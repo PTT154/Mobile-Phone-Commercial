@@ -62,12 +62,12 @@ header {
                         padding-right: 1.6rem;
                         padding-left: 0.85em;
 
-                        &:hover a{
-                            color: $text-hover-color;
+                        &:hover a {
+                            color: $header-text-hover-color;
                         }
 
                         &:hover i::after {
-                            border-color: $text-hover-color;
+                            border-color: $header-text-hover-color;
                         }
 
                         a {
@@ -114,7 +114,7 @@ header {
                         padding: 0 0.85em;
 
                         &:hover a {
-                            color: $text-hover-color
+                            color: $header-text-hover-color
                         }
 
                         a {

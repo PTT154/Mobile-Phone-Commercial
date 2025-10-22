@@ -12,6 +12,13 @@ body {
   background-color: white;
 }
 
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  margin-top: 0;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
 header {
   position: fixed;
   width: 100%;
@@ -160,25 +167,207 @@ header nav .container .support-login-search ul .cart::after {
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(32, 32, 32, 0.5);
+  background: rgba(10, 10, 10, 0.5);
   z-index: 1;
+  pointer-events: none;
 }
 
-.banner-1 {
-  background-image: url("../../images/slider/k5grand.jpg");
-}
-
-.banner-2 {
-  background-image: url("../../images/slider/slider-4.jpg");
-}
-
-.banner-3 {
-  background-image: url("../../images/slider/slider-5.jpg");
+.banner-3::after {
+  background: #1428a0;
+  opacity: 0.4;
 }
 
 .hero-content {
   color: white;
   padding: 5rem 0;
+  z-index: 2;
+  position: relative;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.banner-1 {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  background-image: url("../../images/slider/k5grand.jpg");
+}
+.banner-1 .hero-content p:first-child {
+  font-size: 3rem;
+  line-height: 1.3;
+  font-weight: 100;
+}
+.banner-1 .hero-content h2 {
+  font-size: 3.25rem;
+  line-height: 1.3;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.banner-1 .hero-content p:last-of-type {
+  margin-bottom: 1.8rem;
+}
+.banner-1 .hero-content a {
+  text-decoration: none;
+  display: inline-block;
+  background-color: #1428a0;
+  color: white;
+  padding: 0.8rem 3.8rem;
+  transition: all 0.5s;
+}
+.banner-1 .hero-content a:hover {
+  background-color: rgb(14.3333333333, 28.6666666667, 114.6666666667);
+  color: white;
+}
+
+.banner-2 {
+  text-align: right;
+  background-image: url("../../images/slider/slider-4.jpg");
+  display: flex;
+  align-items: center;
+}
+.banner-2 .hero-content h2 {
+  font-size: 3.25rem;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+.banner-2 .hero-content h2 sup {
+  font-size: 1.75rem;
+  background-color: transparent;
+  border: white 2px solid;
+  padding: 0 0.5rem;
+  border-radius: 2rem;
+  vertical-align: 40%;
+}
+.banner-2 .hero-content h3 {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+.banner-2 .hero-content p:first-of-type {
+  font-size: 1.125rem;
+  font-weight: 700;
+  background-color: #1428a0;
+  display: inline-block;
+  padding: 0 1.5rem;
+  border-radius: 32px;
+  padding-bottom: 0.15rem !important;
+  margin-bottom: 1.5rem;
+}
+.banner-2 .hero-content p:first-of-type sup {
+  font-size: 0.75rem;
+}
+.banner-2 .hero-content p:nth-of-type(2) {
+  cursor: pointer;
+}
+.banner-2 .hero-content p:nth-of-type(2) a {
+  text-decoration: none;
+  display: inline-block;
+  background-color: #212529;
+  color: white;
+  padding: 0.8rem 3.8rem;
+  transition: all 0.5s;
+}
+.banner-2 .hero-content p:nth-of-type(2) a:hover {
+  background-color: #424649;
+  color: white;
+}
+.banner-2 .hero-content p:nth-of-type(3) {
+  margin-top: 1rem;
+}
+
+.banner-3 {
+  text-align: left;
+  background-image: url("../../images/slider/slider-5.jpg");
+  display: flex;
+  align-items: center;
+}
+.banner-3 .hero-content h2 {
+  font-size: 3.25rem;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+.banner-3 .hero-content h2 sup {
+  font-size: 1.75rem;
+  background-color: transparent;
+  border: white 2px solid;
+  padding: 0 0.5rem;
+  border-radius: 2rem;
+  vertical-align: 40%;
+}
+.banner-3 .hero-content h3 {
+  font-size: 1.75rem;
+}
+.banner-3 .hero-content p:first-of-type {
+  margin-bottom: 1.5rem;
+}
+.banner-3 .hero-content p:nth-of-type(2) {
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+.banner-3 .hero-content p:nth-of-type(2) span {
+  margin-left: 0.5rem;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+.banner-3 .hero-content p:nth-of-type(3) {
+  cursor: pointer;
+  display: flex;
+}
+.banner-3 .hero-content p:nth-of-type(3) a:first-of-type {
+  text-decoration: none;
+  display: inline-block;
+  background-color: white;
+  color: black;
+  padding: 0.8rem 3.8rem;
+  transition: all 0.5s;
+}
+.banner-3 .hero-content p:nth-of-type(3) a:first-of-type:hover {
+  background-color: rgb(216.75, 216.75, 216.75);
+  color: black;
+}
+.banner-3 .hero-content p:nth-of-type(3) a:last-of-type {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  border: 1px solid white;
+  display: inline-block;
+  background-color: transparent;
+  color: white;
+  padding: 0.8rem 3.8rem;
+  transition: all 0.5s;
+}
+.banner-3 .hero-content p:nth-of-type(3) a:last-of-type:hover {
+  background-color: white;
+  color: black;
+}
+
+.container {
+  width: 100%;
+  padding: 0 12px;
+  margin: 0 auto;
+}
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (max-width: 767px) {
+  .container {
+    max-width: 540px;
+  }
 }
 
 .owl-carousel {

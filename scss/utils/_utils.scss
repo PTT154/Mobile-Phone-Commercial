@@ -1,3 +1,29 @@
+.container {
+    width: 100%;
+    padding: 0 12px;
+    margin: 0 auto;
+
+    @media (min-width: 1400px) {
+        max-width: 1320px;
+    }
+
+    @media (min-width: 1200px) and (max-width: 1399px) {
+        max-width: 1140px;
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        max-width: 960px;
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+        max-width: 720px;
+    }
+
+    @media (max-width: 767px) {
+        max-width: 540px;
+    }
+}
+
 // owl carousel
 .owl-carousel {
     position: relative;
