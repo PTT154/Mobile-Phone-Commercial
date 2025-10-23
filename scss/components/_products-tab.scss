@@ -1,0 +1,35 @@
+.products-tabs {
+    display: flex;
+    list-style: none;
+    border: 1px solid $border-color;
+    background-color: rgb(246, 247, 248);
+    cursor: pointer;
+    margin-bottom: 3rem;
+
+    li {
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        padding: 0.5rem 1rem;
+
+        &:hover a {
+            color: $primary-color;
+        }
+
+        a {
+            text-decoration: none;
+            @include text-5();
+            color: $secondary-text-color;
+            transition: all 0.3s;
+        }
+    }
+
+    li.active {
+        background-color: $primary-color;
+
+        a {
+            color: white;
+        }
+    }
+}
