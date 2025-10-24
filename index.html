@@ -25,7 +25,7 @@
         <nav>
             <div class="container">
                 <div class="logo">
-                    <a href="#">
+                    <a href="">
                         <img src="./images/logo-light.png" alt="">
                     </a>
                 </div>
@@ -71,22 +71,22 @@
                 <nav class="support-login-search">
                     <ul>
                         <li>
-                            <a href="#">
+                            <a href="">
                                 SUPPORT
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="">
                                 <i class="fa-solid fa-user"></i>
                             </a>
                         </li>
                         <li class="cart">
-                            <a href="#">
+                            <a href="">
                                 <i class="fa-solid fa-cart-shopping"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </a>
                         </li>
@@ -103,7 +103,7 @@
                     <p>Next-gen</p>
                     <h2>Leica Summilux Lens</h2>
                     <p>Large aperture and excellent optical performance.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
+                    <a href="" class="btn btn-primary">Learn More</a>
                 </div>
             </div>
         </div>
@@ -121,7 +121,7 @@
                         Jun, 12PM
                     </p>
                     <p>
-                        <a href="#">Notify Me</a>
+                        <a href="">Notify Me</a>
                     </p>
                     <p>Click "Notify Me" and win Prize</p>
                 </div>
@@ -137,8 +137,8 @@
                     <p>Upto $100 Off</p>
                     <p>From <span>$189丨6GB+128GB</span></p>
                     <p>
-                        <a href="#">Buy Now</a>
-                        <a href="#">Learn More</a>
+                        <a href="">Buy Now</a>
+                        <a href="">Learn More</a>
                     </p>
                 </div>
             </div>
@@ -165,8 +165,8 @@
                 </li>
             </ul>
 
-            <div class="products-list owl-carousel owl-theme">
-                <div class="products-list__item">
+            <div class="products-list owl-carousel owl-theme" id="listProductPhones">
+                <!-- <div class="products-list__item">
                     <div class="discount">70% off</div>
                     <a href="" class="products-list__thumb">
                         <img src="./images/products/product-01.jpg" alt="">
@@ -381,7 +381,7 @@
                         <button>Buy Now</button>
                         <button>Learn More</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -420,6 +420,7 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
     <!-- owl carousel -->
     <script src="./js/owl.carousel.js"></script>
     <script>
@@ -428,15 +429,15 @@
             nav: true,
             items: 1,
             autoplay: true,
-        })
-        $('.products-list').owlCarousel({
-            nav: true,
-            items: 4,
-            margin: 25,
-        })
+        });
     </script>
 
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.11.0/axios.min.js"
+        integrity="sha512-h9644v03pHqrIHThkvXhB2PJ8zf5E9IyVnrSfZg8Yj8k4RsO4zldcQc4Bi9iVLUCCsqNY0b4WXVV4UB+wbWENA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="module" src="./js/main.js"></script>
+    <script src="./src/index.js"></script>
     <script src="./js/headerSroll.js"></script>
 </body>
 
