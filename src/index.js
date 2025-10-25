@@ -1,3 +1,5 @@
+let productsDataPhone = [];
+
 const getListProducts = () => {
     const promise = axios({
         url: 'https://68fa5915ef8b2e621e7fb0ed.mockapi.io/api/phones',
@@ -5,7 +7,8 @@ const getListProducts = () => {
     });
     promise
         .then((result) => {
-            renderListProducts(result.data);
+            productsDataPhone = result.data;
+            renderListProducts(productsDataPhone);
         })
         .catch((error) => {
             console.log(error);
@@ -13,6 +16,8 @@ const getListProducts = () => {
 };
 
 getListProducts();
+
+const getEle = (id) => document.getElementById(id);
 
 const renderRating = (rating) => {
     let phanNguyen = Math.floor(rating);
@@ -60,14 +65,14 @@ const renderListProducts = (data) => {
                         </div>
                     </div>
                     <div class="products-list__btn">
-                        <button>Buy Now</button>
+                        <button class="openModal" data-index="${i}" onclick="handleOpenProductModal(${i})">Buy Now</button>
                         <button>Learn More</button>
                     </div>
                 </div>
         `;
     }
 
-    document.getElementById('listProductPhones').innerHTML = contentHTML;
+    getEle('listProductPhones').innerHTML = contentHTML;
 
     // render list thì chạy lại owl carousel
     $('.products-list').owlCarousel('destroy'); // Xóa carousel cũ nếu có
@@ -90,4 +95,37 @@ const renderListProducts = (data) => {
             }
         }
     });
+};
+
+/**
+ * Đóng mở modal
+ */
+const openBtn = getEle('openModal');
+const closeBtn = getEle('closeModal');
+const modal = getEle('modal');
+
+const handleOpenProductModal = (index) => {
+    document.body.classList.add('modal-open-prevent-scroll'); // Ngăn scroll
+    const product = productsDataPhone[index];
+    modal.classList.add('open');
+
+    getEle('productImg').src = `./images/products/${product.img}`;
+
+    // reset biến a (quantity) mỗi lần mở modal
+    resetQuantity();
 }
+
+window.handleOpenProductModal = handleOpenProductModal;
+
+closeBtn.addEventListener('click', () => {
+    document.body.classList.remove('modal-open-prevent-scroll'); // Mở lại scroll
+    modal.classList.remove('open');
+});
+
+modal.addEventListener('click', function (e) {
+    // Nếu click vào chính modal (nền), chứ không phải modal-inner
+    if (e.target === modal) {
+        modal.classList.remove('open');
+        document.body.classList.remove('modal-open-prevent-scroll');
+    }
+});
