@@ -390,11 +390,27 @@
     <!-- <button id="openModal">Open Modal</button> -->
     <div class="modal" id="modal">
         <div class="modal-inner">
-            <h2>Test Modal</h2>
-            <span id="productName"></span>
-            <span id="productPrice"></span>
-            <span></span>
-            <button id="closeModal">Close</button>
+            <div class="modal-header">
+                <div class="modal-header-title">Add to your cart</div>
+                <div id="closeModal">
+                    <i class="fa-solid fa-x"></i>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body-left">
+                    <img src="" alt="" id="productImg">
+                    <div class="quantity-control">
+                        <div class="wrapper">
+                            <span class="minus">-</span>
+                            <span class="num">01</span>
+                            <span class="plus">+</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body-right"></div>
+
+                <div class="">ABCD</div>
+            </div>
         </div>
     </div>
     <br>
@@ -451,6 +467,7 @@
     <script type="module" src="./js/main.js"></script>
     <script type="module" src="./src/index.js"></script>
     <script src="./js/headerSroll.js"></script>
+    <script src="./js/quantityControl.js"></script>
 </body>
 
 </html>

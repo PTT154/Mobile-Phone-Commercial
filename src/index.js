@@ -105,15 +105,27 @@ const closeBtn = getEle('closeModal');
 const modal = getEle('modal');
 
 const handleOpenProductModal = (index) => {
+    document.body.classList.add('modal-open-prevent-scroll'); // Ngăn scroll
     const product = productsDataPhone[index];
     modal.classList.add('open');
-    document.body.classList.add('modal-open-prevent-scroll'); // Ngăn scroll
+
+    getEle('productImg').src = `./images/products/${product.img}`;
+
+    // reset biến a (quantity) mỗi lần mở modal
+    resetQuantity();
 }
 
 window.handleOpenProductModal = handleOpenProductModal;
 
 closeBtn.addEventListener('click', () => {
-    modal.classList.remove('open');
     document.body.classList.remove('modal-open-prevent-scroll'); // Mở lại scroll
+    modal.classList.remove('open');
 });
 
+modal.addEventListener('click', function (e) {
+    // Nếu click vào chính modal (nền), chứ không phải modal-inner
+    if (e.target === modal) {
+        modal.classList.remove('open');
+        document.body.classList.remove('modal-open-prevent-scroll');
+    }
+});
