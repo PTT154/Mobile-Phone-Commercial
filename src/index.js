@@ -47,7 +47,7 @@ const renderListProducts = (data) => {
         const product = data[i];
         contentHTML += `
             <div class="products-list__item">
-                    <div class="discount">${product.discount}% off</div>
+                    <div class="discount">${product.discount}% OFF</div>
                     <a href="" class="products-list__thumb">
                         <img src="./images/products/${product.img}" alt="">
                     </a>
@@ -109,10 +109,17 @@ const handleOpenProductModal = (index) => {
     const product = productsDataPhone[index];
     modal.classList.add('open');
 
-    getEle('productImg').src = `./images/products/${product.img}`;
-
     // reset biến a (quantity) mỗi lần mở modal
     resetQuantity();
+
+    //reset lựa chọn màu và storage mỗi khi đóng modal
+    resetProductOptions();
+
+    getEle('productImg').src = `./images/products/${product.img}`;
+    getEle('productName').innerHTML = `${product.name} 5G`;
+    getEle('productPrice').innerHTML = `$${product.newPrice}.00`;
+    getEle('oldPrice').innerHTML = `$${product.oldPrice}.00`;
+    getEle('discount').innerHTML = `${product.discount}% OFF`
 }
 
 window.handleOpenProductModal = handleOpenProductModal;
