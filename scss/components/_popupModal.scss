@@ -56,7 +56,8 @@
                 .product-actions {
                     font-size: 14px;
                     display: flex;
-                    justify-content: space-around;
+                    justify-content: center;
+                    gap: 25px;
                     margin-top: 1.5rem;
                     color: $third-text-color;
 
