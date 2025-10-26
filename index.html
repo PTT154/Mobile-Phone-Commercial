@@ -391,7 +391,7 @@
     <div class="modal" id="modal">
         <div class="modal-inner">
             <div class="modal-header">
-                <div class="modal-header-title">Add to your cart</div>
+                <div class="modal-header-title">Add to your Cart</div>
                 <div id="closeModal">
                     <i class="fa-solid fa-x"></i>
                 </div>
@@ -401,15 +401,84 @@
                     <img src="" alt="" id="productImg">
                     <div class="quantity-control">
                         <div class="wrapper">
-                            <span class="minus">-</span>
-                            <span class="num">01</span>
-                            <span class="plus">+</span>
+                            <div class="minus">-</div>
+                            <div class="num">01</div>
+                            <div class="plus">+</div>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <div class="product-actions-item btn-share">
+                            <i class="fa-solid fa-share"></i>
+                            Share
+                        </div>
+                        <div class="product-actions-item btn-wishlist">
+                            <i class="fa-solid fa-heart"></i>
+                            Add to wishlist
+                        </div>
+                        <div class="product-actions-item btn-compare">
+                            <i class="fa-solid fa-rotate"></i>
+                            Compare
                         </div>
                     </div>
                 </div>
-                <div class="modal-body-right"></div>
-
-                <div class="">ABCD</div>
+                <div class="modal-body-right">
+                    <h2 id="productName">NUUA S4 Pro 5G</h2>
+                    <p>8GB+128GB, Black</p>
+                    <div class="product-detail">
+                        <div class="product-detail-item">22.5W Flash Charge</div>
+                        <div class="product-detail-item">3760mAh Battery</div>
+                        <div class="product-detail-item">Qualcomm Snapdragon 675AIE</div>
+                        <div class="product-detail-item">Flash In-Display Fingerprint</div>
+                        <div class="product-detail-item">44MP AI Triple Rear Camera</div>
+                        <div class="product-detail-item">15.20cm (5.38) FHD Display</div>
+                    </div>
+                    <div class="product-price">
+                        <div class="new-price">
+                            <span>Price: </span>
+                            <span id='productPrice'></span>
+                            <span>(inclusive of all taxes)</span>
+                        </div>
+                        <div class="old-price">
+                            <span>Old Price:</span>
+                            <span id="oldPrice"></span>
+                            <span id="discount"></span>
+                        </div>
+                    </div>
+                    <div class="product-storage">
+                        <p>Storage:</p>
+                        <div class="storage-select">
+                            <button class="storage-option active">8GB + 128GB</button>
+                            <button class="storage-option">16GB + 256GB</button>
+                        </div>
+                    </div>
+                    <div class="product-color">
+                        <p>Color:</p>
+                        <div class="color-select">
+                            <button class="color-option active">
+                                <img class="rounded-circle me-2" src="images/color/black.jpg" alt="">
+                                Black
+                            </button>
+                            <button class="color-option">
+                                <img class="rounded-circle me-2" src="images/color/purple.jpg" alt="">
+                                Purple
+                            </button>
+                            <button class="color-option">
+                                <img class="rounded-circle me-2" src="images/color/red.jpg" alt="">
+                                Red
+                            </button>
+                        </div>
+                    </div>
+                    <div class="payment-button">
+                        <div>
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Add to Cart
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-bolt-lightning"></i>
+                            Buy Now
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -468,6 +537,7 @@
     <script type="module" src="./src/index.js"></script>
     <script src="./js/headerSroll.js"></script>
     <script src="./js/quantityControl.js"></script>
+    <script src="./js/resetOptions.js"></script>
 </body>
 
 </html>
