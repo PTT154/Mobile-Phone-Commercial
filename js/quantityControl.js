@@ -1,3 +1,6 @@
+/**
+ * Thay đổi số lượng sản phẩm
+ */
 const plus = document.querySelector(".plus"),
     minus = document.querySelector(".minus"),
     num = document.querySelector(".num");
@@ -12,11 +15,13 @@ plus.addEventListener("click", () => {
     a++;
     a = (a < 10) ? "0" + a : a;
     num.innerText = a;
+    updateProductPrice(); // click vào xong mới thực hiện tính toán update lại price
 });
 minus.addEventListener("click", () => {
     if (a > 1) {
         a--;
         a = (a < 10) ? "0" + a : a;
         num.innerText = a;
+        updateProductPrice(); // click vào xong mới thực hiện tính toán update lại price
     }
 });

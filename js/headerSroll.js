@@ -1,3 +1,6 @@
+/**
+ * Chuyển nền header sang đen khi kéo scroll xuống
+ */
 window.addEventListener('scroll', function () {
     const header = document.querySelector('header');
     if (window.scrollY > 0) {

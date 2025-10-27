@@ -1,3 +1,6 @@
+/**
+ * Reset lại options của sản phẩm khi mở lại modal
+ */
 function resetProductOptions() {
     // Reset storage option
     const storageOptions = document.querySelectorAll('.storage-select .storage-option');
