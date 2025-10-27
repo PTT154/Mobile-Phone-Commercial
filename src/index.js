@@ -1,5 +1,9 @@
-let productsDataPhone = [];
+let currentProductIndex = null; //Dùng để lưu index
+let productsDataPhone = []; //Dùng để lưu mảng các object sản phẩm điện thoại
 
+/**
+ * API
+ */
 const getListProducts = () => {
     const promise = axios({
         url: 'https://68fa5915ef8b2e621e7fb0ed.mockapi.io/api/phones',
@@ -17,7 +21,12 @@ const getListProducts = () => {
 
 getListProducts();
 
+//Hàm dùng nhanh getElementById
 const getEle = (id) => document.getElementById(id);
+
+/**
+ * Tính số sao đánh giá
+ */
 
 const renderRating = (rating) => {
     let phanNguyen = Math.floor(rating);
@@ -39,6 +48,10 @@ const renderRating = (rating) => {
 
     return contentRating;
 };
+
+/**
+ * render danh sách products ra giao diện
+ */
 
 const renderListProducts = (data) => {
     console.log("renderProducts", data);
@@ -105,6 +118,7 @@ const closeBtn = getEle('closeModal');
 const modal = getEle('modal');
 
 const handleOpenProductModal = (index) => {
+    currentProductIndex = index; // Lưu lại index sản phẩm đang mở modal
     document.body.classList.add('modal-open-prevent-scroll'); // Ngăn scroll
     const product = productsDataPhone[index];
     modal.classList.add('open');
@@ -115,15 +129,18 @@ const handleOpenProductModal = (index) => {
     //reset lựa chọn màu và storage mỗi khi đóng modal
     resetProductOptions();
 
+    updateProductPrice();
+
     getEle('productImg').src = `./images/products/${product.img}`;
     getEle('productName').innerHTML = `${product.name} 5G`;
     getEle('productPrice').innerHTML = `$${product.newPrice}.00`;
     getEle('oldPrice').innerHTML = `$${product.oldPrice}.00`;
-    getEle('discount').innerHTML = `${product.discount}% OFF`
+    getEle('discount').innerHTML = `${product.discount}% OFF`;
 }
 
 window.handleOpenProductModal = handleOpenProductModal;
 
+// Khóa scroll khi mở modal
 closeBtn.addEventListener('click', () => {
     document.body.classList.remove('modal-open-prevent-scroll'); // Mở lại scroll
     modal.classList.remove('open');
@@ -136,3 +153,51 @@ modal.addEventListener('click', function (e) {
         document.body.classList.remove('modal-open-prevent-scroll');
     }
 });
+
+/**
+ * Cập nhật giá khi thay tăng số lượng và thay đổi lựa chọn dung lượng
+ */
+function updateProductPrice() {
+    // lấy product
+    const product = productsDataPhone[currentProductIndex];
+
+    // Lấy số lượng sản phẩm
+    const quantity = parseInt(document.querySelector('.quantity-control .num').textContent, 10);
+
+    // Lấy dung lượng đang chọn
+    const storageIndex = Array.from(document.querySelectorAll('.storage-option')).findIndex(opt => opt.classList.contains('active'));
+
+    // Lấy dung màu đang chọn
+    const colorIndex = Array.from(document.querySelectorAll('.color-option')).findIndex(opt => opt.classList.contains('active'));
+
+    // Lấy giá gốc từ sản phẩm đang mở modal
+    let basePrice = product.newPrice;
+
+    console.log("test: ", product, quantity, storageIndex, basePrice);
+
+    if (storageIndex === 1) {
+        basePrice += 50;
+        getEle('productName-productStorage').innerHTML = `16GB+256GB, `;
+    } else {
+        getEle('productName-productStorage').innerHTML = `8GB+128GB, `;
+    }
+
+
+    getEle('productImg').style.filter = "none"; // Xóa filter mỗi lần mở lại modal (Mỗi lần mở modal thì update)
+    if (colorIndex === 2) {
+        getEle('productName-productColor').innerHTML = `Red`;
+        getEle('productImg').style.filter = "sepia(1) hue-rotate(-60deg) saturate(4)";
+    } else if (colorIndex === 1) {
+        getEle('productName-productColor').innerHTML = `Purple`;
+        getEle('productImg').style.filter = "sepia(1) hue-rotate(-130deg) saturate(4)";
+    } else {
+        getEle('productName-productColor').innerHTML = `Black`;
+        getEle('productImg').style.filter = "none"; // Xóa filter
+    }
+
+    const totalPrice = basePrice * quantity;
+
+    getEle('productPrice').innerHTML = `$${totalPrice}.00`;
+}
+
+window.updateProductPrice = updateProductPrice;

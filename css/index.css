@@ -76,7 +76,8 @@
   padding-left: 0;
 }
 .modal .modal-inner .modal-body .modal-body-left img {
-  width: 100%;
+  height: 450px;
+  width: auto;
 }
 .modal .modal-inner .modal-body .modal-body-left .product-actions {
   font-size: 14px;
