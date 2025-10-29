@@ -473,6 +473,32 @@ header nav .container .support-login-search ul .cart::after {
   border: 1px solid black;
 }
 
+.banner__tv-audio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.banner__tv-audio img {
+  width: 100%;
+  height: auto;
+}
+.banner__tv-audio .tv,
+.banner__tv-audio .audio {
+  position: relative;
+  display: inline-block;
+}
+.banner__tv-audio .tv__text,
+.banner__tv-audio .audio__text {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
 .container {
   width: 100%;
   padding: 0 12px;
