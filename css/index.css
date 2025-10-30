@@ -796,6 +796,33 @@ header nav .container .support-login-search ul .cart::after {
   font-weight: bold;
 }
 
+.list__tv {
+  margin-top: 2rem;
+  width: 100%;
+}
+.list__tv .list__tv_header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.list__tv .list__tv_header a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+.list__tv .list__tv_header button {
+  padding: 3px 8px;
+  color: #1428a0;
+  border: 0.3px solid #1428a0;
+  background: transparent;
+}
+.list__tv .listProductTV {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+
 .container {
   width: 100%;
   padding: 0 12px;
@@ -855,7 +882,7 @@ header nav .container .support-login-search ul .cart::after {
 }
 .hero-section.owl-carousel .owl-nav .owl-prev:hover,
 .hero-section.owl-carousel .owl-nav .owl-next:hover {
-  background-color: #CCCCCC !important;
+  background-color: #cccccc !important;
   color: white !important;
 }
 .hero-section.owl-carousel .owl-dots {
@@ -906,7 +933,7 @@ header nav .container .support-login-search ul .cart::after {
 }
 .products-list.owl-carousel .owl-nav .owl-prev:hover,
 .products-list.owl-carousel .owl-nav .owl-next:hover {
-  background-color: #CCCCCC !important;
+  background-color: #cccccc !important;
   color: white !important;
 }
 .products-list.owl-carousel .owl-dots {
@@ -923,6 +950,57 @@ header nav .container .support-login-search ul .cart::after {
   border: rgba(0, 0, 0, 0.2) !important;
 }
 .products-list.owl-carousel .owl-dots .owl-dot.active span {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  border: rgba(0, 0, 0, 0.2) !important;
+}
+
+.listProductTV.owl-carousel {
+  position: relative;
+}
+.listProductTV.owl-carousel .owl-nav {
+  margin-top: 0 !important;
+}
+.listProductTV.owl-carousel .owl-nav .owl-prev,
+.listProductTV.owl-carousel .owl-nav .owl-next {
+  width: 44px !important;
+  height: 44px !important;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0px !important;
+  z-index: 2;
+  color: #333 !important;
+  background-color: rgba(250, 250, 250, 0.5) !important;
+  color: red;
+  border-radius: 0 !important;
+  transition: all 0.5s;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
+}
+.listProductTV.owl-carousel .owl-nav .owl-prev {
+  left: -12.5px;
+}
+.listProductTV.owl-carousel .owl-nav .owl-next {
+  right: -12.5px;
+}
+.listProductTV.owl-carousel .owl-nav .owl-prev:hover,
+.listProductTV.owl-carousel .owl-nav .owl-next:hover {
+  background-color: #cccccc !important;
+  color: white !important;
+}
+.listProductTV.owl-carousel .owl-dots {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+.listProductTV.owl-carousel .owl-dots .owl-dot span {
+  background-color: transparent !important;
+  border: solid 2px rgba(0, 0, 0, 0.2) !important;
+}
+.listProductTV.owl-carousel .owl-dots .owl-dot span:hover {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  border: rgba(0, 0, 0, 0.2) !important;
+}
+.listProductTV.owl-carousel .owl-dots .owl-dot.active span {
   background-color: rgba(0, 0, 0, 0.2) !important;
   border: rgba(0, 0, 0, 0.2) !important;
 }/*# sourceMappingURL=index.css.map */
