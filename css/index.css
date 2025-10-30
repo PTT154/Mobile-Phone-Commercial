@@ -817,8 +817,6 @@ header nav .container .support-login-search ul .cart::after {
   background: transparent;
 }
 .list__tv .listProductTV {
-  display: flex;
-  justify-content: space-between;
   gap: 20px;
   width: 100%;
 }
@@ -971,7 +969,6 @@ header nav .container .support-login-search ul .cart::after {
   z-index: 2;
   color: #333 !important;
   background-color: rgba(250, 250, 250, 0.5) !important;
-  color: red;
   border-radius: 0 !important;
   transition: all 0.5s;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
