@@ -1,3 +1,6 @@
+/**
+ * Hàm chuyển tab
+ */
 export function tabSwitch(selector) {
     document.querySelectorAll(selector).forEach(function (tab) {
         tab.addEventListener('click', function (e) {
