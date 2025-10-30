@@ -143,8 +143,8 @@ const renderProducts_TV = (data) => {
   document.getElementById("listProductTV").innerHTML = contentHTML;
 
   // render list thì chạy lại owl carousel
-  $(".list__tv").owlCarousel("destroy"); // Xóa carousel cũ nếu có
-  $(".list__tv").owlCarousel({
+  $(".listProductTV").owlCarousel("destroy"); // Xóa carousel cũ nếu có
+  $(".listProductTV").owlCarousel({
     nav: true,
     items: 4,
     margin: 25,
