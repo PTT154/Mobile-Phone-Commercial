@@ -5,16 +5,9 @@ let productsDataPhone = []; //Dùng để lưu mảng các object sản phẩm �
  * API
  */
 const getListProducts = () => {
-  const promise = axios({
-    url: "https://68fa5915ef8b2e621e7fb0ed.mockapi.io/api/phones",
-    method: "GET",
-  });
-  promise
-    .then((result) => {
-      renderListProducts(result.data);
-    })
-    .catch((error) => {
-      console.log(error);
+    const promise = axios({
+        url: "https://68fa5915ef8b2e621e7fb0ed.mockapi.io/api/phones",
+        method: "GET",
     });
     promise
         .then((result) => {
@@ -36,24 +29,24 @@ const getEle = (id) => document.getElementById(id);
  */
 
 const renderRating = (rating) => {
-  let phanNguyen = Math.floor(rating);
-  let phanThapPhan = rating - phanNguyen;
-  let contentRating = "";
-  for (let i = 1; i <= phanNguyen; i++) {
-    contentRating += `<i class="fa-solid fa-star"></i>`;
-  }
-  if (phanThapPhan >= 0.5) {
-    contentRating += `<i class="fa-solid fa-star-half-stroke"></i>`;
-    for (let i = 1; i <= 4 - phanNguyen; i++) {
-      contentRating += `<i class="fa-regular fa-star"></i>`;
+    let phanNguyen = Math.floor(rating);
+    let phanThapPhan = rating - phanNguyen;
+    let contentRating = "";
+    for (let i = 1; i <= phanNguyen; i++) {
+        contentRating += `<i class="fa-solid fa-star"></i>`;
     }
-  } else {
-    for (let i = 1; i <= 5 - phanNguyen; i++) {
-      contentRating += `<i class="fa-regular fa-star"></i>`;
+    if (phanThapPhan >= 0.5) {
+        contentRating += `<i class="fa-solid fa-star-half-stroke"></i>`;
+        for (let i = 1; i <= 4 - phanNguyen; i++) {
+            contentRating += `<i class="fa-regular fa-star"></i>`;
+        }
+    } else {
+        for (let i = 1; i <= 5 - phanNguyen; i++) {
+            contentRating += `<i class="fa-regular fa-star"></i>`;
+        }
     }
-  }
 
-  return contentRating;
+    return contentRating;
 };
 
 /**
@@ -61,11 +54,11 @@ const renderRating = (rating) => {
  */
 
 const renderListProducts = (data) => {
-  //   console.log("renderProducts", data);
-  let contentHTML = "";
-  for (let i = 0; i < data.length; i++) {
-    const product = data[i];
-    contentHTML += `
+    //   console.log("renderProducts", data);
+    let contentHTML = "";
+    for (let i = 0; i < data.length; i++) {
+        const product = data[i];
+        contentHTML += `
             <div class="products-list__item">
                     <div class="discount">${product.discount}% OFF</div>
                     <a href="" class="products-list__thumb">
@@ -90,55 +83,55 @@ const renderListProducts = (data) => {
                     </div>
                 </div>
         `;
-  }
+    }
 
     getEle('listProductPhones').innerHTML = contentHTML;
 
-  // render list thì chạy lại owl carousel
-  $(".products-list").owlCarousel("destroy"); // Xóa carousel cũ nếu có
-  $(".products-list").owlCarousel({
-    nav: true,
-    items: 4,
-    margin: 25,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      576: {
-        items: 2,
-      },
-      992: {
-        items: 3,
-      },
-      1200: {
+    // render list thì chạy lại owl carousel
+    $(".products-list").owlCarousel("destroy"); // Xóa carousel cũ nếu có
+    $(".products-list").owlCarousel({
+        nav: true,
         items: 4,
-      },
-    },
-  });
+        margin: 25,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            576: {
+                items: 2,
+            },
+            992: {
+                items: 3,
+            },
+            1200: {
+                items: 4,
+            },
+        },
+    });
 };
 
 // TV
 const getListProducts_TV = () => {
-  const promise = axios({
-    url: "https://68fa5915ef8b2e621e7fb0ed.mockapi.io/api/TVs",
-    method: "GET",
-  });
-  promise
-    .then((result) => {
-      renderProducts_TV(result.data);
-    })
-    .catch((error) => {
-      console.log(error);
+    const promise = axios({
+        url: "https://68fa5915ef8b2e621e7fb0ed.mockapi.io/api/TVs",
+        method: "GET",
     });
+    promise
+        .then((result) => {
+            renderProducts_TV(result.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 };
 getListProducts_TV();
 
 const renderProducts_TV = (data) => {
-  console.log("dataTV", data);
-  let contentHTML = "";
-  for (let i = 0; i < data.length; i++) {
-    const tv = data[i];
-    contentHTML += `
+    console.log("dataTV", data);
+    let contentHTML = "";
+    for (let i = 0; i < data.length; i++) {
+        const tv = data[i];
+        contentHTML += `
     <div class="products-list__item">
         <a href="" class="products-list__thumb">
             <img src="./images/products/${tv.img}" alt="" />
@@ -163,31 +156,31 @@ const renderProducts_TV = (data) => {
             </div>
 
         `;
-  }
-  console.log(contentHTML);
-  document.getElementById("listProductTV").innerHTML = contentHTML;
+    }
+    console.log(contentHTML);
+    document.getElementById("listProductTV").innerHTML = contentHTML;
 
-  // render list thì chạy lại owl carousel
-  $(".listProductTV").owlCarousel("destroy"); // Xóa carousel cũ nếu có
-  $(".listProductTV").owlCarousel({
-    nav: true,
-    items: 4,
-    margin: 25,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      576: {
-        items: 2,
-      },
-      992: {
-        items: 3,
-      },
-      1200: {
+    // render list thì chạy lại owl carousel
+    $(".listProductTV").owlCarousel("destroy"); // Xóa carousel cũ nếu có
+    $(".listProductTV").owlCarousel({
+        nav: true,
         items: 4,
-      },
-    },
-  });
+        margin: 25,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            576: {
+                items: 2,
+            },
+            992: {
+                items: 3,
+            },
+            1200: {
+                items: 4,
+            },
+        },
+    });
 };
 
 /**
