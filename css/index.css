@@ -467,8 +467,7 @@ header nav .container .support-login-search ul li a {
 header nav .container .support-login-search ul .cart {
   position: relative;
 }
-header nav .container .support-login-search ul .cart::after {
-  content: "2";
+header nav .container .support-login-search ul .cart #cartCount {
   position: absolute;
   top: -8px;
   right: 5px;

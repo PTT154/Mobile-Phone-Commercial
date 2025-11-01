@@ -1,5 +1,8 @@
+import CartItem from "./models/CartItemPhone.js";
+
 let currentProductIndex = null; //Dùng để lưu index
 let productsDataPhone = []; //Dùng để lưu mảng các object sản phẩm điện thoại
+let cartList = [];
 
 /**
  * API
@@ -22,7 +25,7 @@ const getListProducts = () => {
 getListProducts();
 
 //Hàm dùng nhanh getElementById
-const getEle = (id) => document.getElementById(id);
+export const getEle = (id) => document.getElementById(id);
 
 /**
  * Tính số sao đánh giá
@@ -127,7 +130,6 @@ const getListProducts_TV = () => {
 getListProducts_TV();
 
 const renderProducts_TV = (data) => {
-    console.log("dataTV", data);
     let contentHTML = "";
     for (let i = 0; i < data.length; i++) {
         const tv = data[i];
@@ -157,7 +159,6 @@ const renderProducts_TV = (data) => {
 
         `;
     }
-    console.log(contentHTML);
     document.getElementById("listProductTV").innerHTML = contentHTML;
 
     // render list thì chạy lại owl carousel
@@ -219,6 +220,7 @@ closeBtn.addEventListener('click', () => {
     modal.classList.remove('open');
 });
 
+//Đóng modal khi click ra ngoài popup
 modal.addEventListener('click', function (e) {
     // Nếu click vào chính modal (nền), chứ không phải modal-inner
     if (e.target === modal) {
@@ -246,8 +248,6 @@ function updateProductPrice() {
     // Lấy giá gốc từ sản phẩm đang mở modal
     let basePrice = product.newPrice;
 
-    console.log("test: ", product, quantity, storageIndex, basePrice);
-
     if (storageIndex === 1) {
         basePrice += 50;
         getEle('productName-productStorage').innerHTML = `16GB+256GB, `;
@@ -274,3 +274,29 @@ function updateProductPrice() {
 }
 
 window.updateProductPrice = updateProductPrice;
+
+const addProductToCart = () => {
+    // lấy product
+    const product = productsDataPhone[currentProductIndex];
+
+    const id = product.id;
+    const name = product.name;
+    const price = product.newPrice;
+    const img = product.img;
+    const color = document.querySelector('.color-option.active').textContent.trim(); //Dùng trim giúp lấy văn bản ko có khoảng trắng ở đầu và cuối
+    const storage = document.querySelector('.storage-option.active').textContent.trim();
+    const quantity = parseInt(document.querySelector('.quantity-control .num').textContent, 10);
+    const type = product.type;
+
+    const cartItem = new CartItem(id, name, price, img, color, storage, quantity, type);
+    cartList.push(cartItem);
+    console.log(cartList);
+    modal.classList.remove('open'); //Đóng modal sau khi Add to Cart
+    updateCartCount(); //Hiện số lượng sản phẩm đã thêm trên giỏ hàng
+}
+
+window.addProductToCart = addProductToCart;
+
+const updateCartCount = () => {
+    document.getElementById('cartCount').textContent = cartList.length;
+}
