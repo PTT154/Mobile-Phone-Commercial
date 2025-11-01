@@ -2,7 +2,7 @@ import CartItem from "./models/CartItemPhone.js";
 
 let currentProductIndex = null; //Dùng để lưu index
 let productsDataPhone = []; //Dùng để lưu mảng các object sản phẩm điện thoại
-let cartList = [];
+let cartList = []; //Giỏ hàng
 
 /**
  * API
@@ -63,28 +63,28 @@ const renderListProducts = (data) => {
         const product = data[i];
         contentHTML += `
             <div class="products-list__item">
-                    <div class="discount">${product.discount}% OFF</div>
-                    <a href="" class="products-list__thumb">
-                        <img src="./images/products/${product.img}" alt="">
-                    </a>
-                    <div class="products-list__info">
-                        <h4 class="products-list__name">
-                            <a href="#">${product.name}</a>
-                        </h4>
-                        <div class="products-list__price">
-                            <span class="price--old">$${product.oldPrice}</span>
-                            <span class="price--new">$${product.newPrice}</span>
-                        </div>
-                        <div class="rating">
-                            <span>${product.rating}</span>
-                            ${renderRating(product.rating)}
-                        </div>
+                <div class="discount">${product.discount}% OFF</div>
+                <a href="" class="products-list__thumb">
+                    <img src="./images/products/${product.img}" alt="">
+                </a>
+                <div class="products-list__info">
+                    <h4 class="products-list__name">
+                        <a href="#">${product.name}</a>
+                    </h4>
+                    <div class="products-list__price">
+                        <span class="price--old">$${product.oldPrice}</span>
+                        <span class="price--new">$${product.newPrice}</span>
                     </div>
-                    <div class="products-list__btn">
-                        <button class="openModal" data-index="${i}" onclick="handleOpenProductModal(${i})">Buy Now</button>
-                        <button>Learn More</button>
+                    <div class="rating">
+                        <span>${product.rating}</span>
+                        ${renderRating(product.rating)}
                     </div>
                 </div>
+                <div class="products-list__btn">
+                    <button class="openModal" data-index="${i}" onclick="handleOpenProductModal(${i})">Buy Now</button>
+                    <button>Learn More</button>
+                </div>
+            </div>
         `;
     }
 
@@ -127,6 +127,7 @@ const getListProducts_TV = () => {
             console.log(error);
         });
 };
+
 getListProducts_TV();
 
 const renderProducts_TV = (data) => {
@@ -134,29 +135,29 @@ const renderProducts_TV = (data) => {
     for (let i = 0; i < data.length; i++) {
         const tv = data[i];
         contentHTML += `
-    <div class="products-list__item">
-        <a href="" class="products-list__thumb">
-            <img src="./images/products/${tv.img}" alt="" />
-        </a>
-        <div class="products-list__info">
-            <h4 class="products-list__name"><a href="">${tv.name}</a></h4>
+            <div class="products-list__item">
+                <a href="" class="products-list__thumb">
+                    <img src="./images/products/${tv.img}" alt="" />
+                </a>
+                <div class="products-list__info">
+                    <h4 class="products-list__name"><a href="">${tv.name}</a></h4>
 
-            <div class="products-list__price">
-                <span class="price--old">${tv.oldPrice}</span>
-                <span class="price--new">${tv.newPrice}</span>
+                    <div class="products-list__price">
+                        <span class="price--old">${tv.oldPrice}</span>
+                        <span class="price--new">${tv.newPrice}</span>
+                        </div>
+
+                        <div class="rating">
+                        <span>${tv.rating}</span>
+                        ${renderRating(tv.rating)}
+                        </div>
+                    </div>
+                    <div class="products-list__btn">
+                        <button>Buy Now</button>
+                        <button>Learn More</button>
+                    </div>
                 </div>
-
-                <div class="rating">
-                <span>${tv.rating}</span>
-                 ${renderRating(tv.rating)}
-                </div>
             </div>
-            <div class="products-list__btn">
-                <button>Buy Now</button>
-                <button>Learn More</button>
-            </div>
-            </div>
-
         `;
     }
     document.getElementById("listProductTV").innerHTML = contentHTML;
@@ -194,8 +195,8 @@ const modal = getEle('modal');
 const handleOpenProductModal = (index) => {
     currentProductIndex = index; // Lưu lại index sản phẩm đang mở modal
     document.body.classList.add('modal-open-prevent-scroll'); // Ngăn scroll
-    const product = productsDataPhone[index];
-    modal.classList.add('open');
+    const product = productsDataPhone[index]; //Lấy product vừa mở ra
+    modal.classList.add('open'); //Mở popup
 
     // reset biến a (quantity) mỗi lần mở modal
     resetQuantity();
@@ -203,8 +204,10 @@ const handleOpenProductModal = (index) => {
     //reset lựa chọn màu và storage mỗi khi đóng modal
     resetProductOptions();
 
+    //Dùng để reset lại storage và màu của sản phẩm
     updateProductPrice();
 
+    //Lấy và in thông tin sản phẩm ra popup mỗi lần mở modal
     getEle('productImg').src = `./images/products/${product.img}`;
     getEle('productName').innerHTML = `${product.name} 5G`;
     getEle('productPrice').innerHTML = `$${product.newPrice}.00`;
@@ -281,18 +284,19 @@ const addProductToCart = () => {
 
     const id = product.id;
     const name = product.name;
-    const price = product.newPrice;
+    const basePrice = product.newPrice;
     const img = product.img;
     const color = document.querySelector('.color-option.active').textContent.trim(); //Dùng trim giúp lấy văn bản ko có khoảng trắng ở đầu và cuối
     const storage = document.querySelector('.storage-option.active').textContent.trim();
     const quantity = parseInt(document.querySelector('.quantity-control .num').textContent, 10);
     const type = product.type;
 
-    const cartItem = new CartItem(id, name, price, img, color, storage, quantity, type);
+    const cartItem = new CartItem(id, name, basePrice, img, color, storage, quantity, type);
     cartList.push(cartItem);
     console.log(cartList);
     modal.classList.remove('open'); //Đóng modal sau khi Add to Cart
     updateCartCount(); //Hiện số lượng sản phẩm đã thêm trên giỏ hàng
+    setLocalStorage(); //Lưu cartList vào local
 }
 
 window.addProductToCart = addProductToCart;
@@ -300,3 +304,26 @@ window.addProductToCart = addProductToCart;
 const updateCartCount = () => {
     document.getElementById('cartCount').textContent = cartList.length;
 }
+
+// setLocalStorage (Lưu mảng cartList trong local)
+const setLocalStorage = () => {
+    //chuyển list qua string
+    const dataString = JSON.stringify(cartList);
+    //Lưu vào local storage
+    localStorage.setItem('CART_LIST', dataString);
+};
+
+// getLocalStorage
+const getLocalStorage = () => {
+    //lấy dữ liệu từ local
+    const dataString = localStorage.getItem('CART_LIST');
+    if (!dataString) return; // Không có dữ liệu thì thoát luôn
+    //convert từ dataString => JSON
+    const dataJson = JSON.parse(dataString);
+    //phục hồi dữ liệu cho cartList
+    cartList = dataJson;
+    //khôi phục dữ liệu xong thì update lại số lượng item trong cart
+    updateCartCount();
+}
+
+getLocalStorage();
