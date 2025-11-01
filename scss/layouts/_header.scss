@@ -128,8 +128,7 @@ header {
                     .cart {
                         position: relative;
 
-                        &::after {
-                            content: "2"; // Số lượng sản phẩm
+                        #cartCount {
                             position: absolute;
                             top: -8px;
                             right: 5px;
