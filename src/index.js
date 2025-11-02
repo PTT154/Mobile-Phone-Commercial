@@ -293,7 +293,10 @@ const addProductToCart = () => {
 
     const cartItem = new CartItem(id, name, basePrice, img, color, storage, quantity, type);
     cartList.push(cartItem);
+    
     console.log(cartList);
+
+    document.body.classList.remove('modal-open-prevent-scroll'); // Mở lại scroll
     modal.classList.remove('open'); //Đóng modal sau khi Add to Cart
     updateCartCount(); //Hiện số lượng sản phẩm đã thêm trên giỏ hàng
     setLocalStorage(); //Lưu cartList vào local
