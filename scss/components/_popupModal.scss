@@ -87,30 +87,35 @@
                 }
 
                 .product-detail {
-                    color: $secondary-text-color;
-                    background-color: $bg-light;
-                    display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                    font-size: 14px;
-                    gap: 20px 40px;
-                    padding: 10px 30px;
-                    margin-bottom: 1rem;
+
+                    .product-detail__phone,
+                    .product-detail__tv,
+                    .product-detail__accessory {
+                        color: $secondary-text-color;
+                        background-color: $bg-light;
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        font-size: 14px;
+                        gap: 20px 40px;
+                        padding: 10px 30px;
+                        margin-bottom: 1rem;
 
 
-                    .product-detail-item {
-                        position: relative;
+                        .product-detail-item {
+                            position: relative;
 
-                        &::before {
-                            content: "";
-                            display: inline-block;
-                            width: 4px;
-                            height: 4px;
-                            background-color: $secondary-text-color;
-                            border-radius: 50%;
-                            position: absolute;
-                            left: -10px;
-                            top: 50%;
-                            transform: translateY(-50%);
+                            &::before {
+                                content: "";
+                                display: inline-block;
+                                width: 4px;
+                                height: 4px;
+                                background-color: $secondary-text-color;
+                                border-radius: 50%;
+                                position: absolute;
+                                left: -10px;
+                                top: 50%;
+                                transform: translateY(-50%);
+                            }
                         }
                     }
                 }
@@ -155,73 +160,75 @@
                 }
             }
 
-            .product-storage {
-                padding: 0.5rem 0;
-                padding-bottom: 0;
+            .product-select__phone {
+                .product-storage {
+                    padding: 0.5rem 0;
+                    padding-bottom: 0;
 
-                p {
-                    color: $products-name-text-color;
-                    margin-bottom: 0.5rem;
-                }
+                    p {
+                        color: $products-name-text-color;
+                        margin-bottom: 0.5rem;
+                    }
 
-                .storage-select {
-                    display: flex;
-                    gap: 1rem;
-                    justify-content: space-between;
-
-                    .storage-option {
-                        color: lighten($products-name-text-color, 10%);
-                        background-color: transparent;
-                        font-size: 1rem;
-                        cursor: pointer;
+                    .storage-select {
                         display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        gap: 5px;
-                        transition: all 0.3s;
+                        gap: 1rem;
+                        justify-content: space-between;
 
-                        img {
-                            border-radius: 50%;
+                        .storage-option {
+                            color: lighten($products-name-text-color, 10%);
+                            background-color: transparent;
+                            font-size: 1rem;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 5px;
+                            transition: all 0.3s;
+
+                            img {
+                                border-radius: 50%;
+                            }
+
+                            border: 1px solid darken($border-color, 10%);
+                            height: 40px;
+                            text-align: center;
+                            width: 100%;
                         }
-
-                        border: 1px solid darken($border-color, 10%);
-                        height: 40px;
-                        text-align: center;
-                        width: 100%;
                     }
                 }
-            }
 
-            .product-color {
-                padding: 0.5rem 0;
+                .product-color {
+                    padding: 0.5rem 0;
 
-                p {
-                    color: $products-name-text-color;
-                    margin-bottom: 0.5rem;
-                }
+                    p {
+                        color: $products-name-text-color;
+                        margin-bottom: 0.5rem;
+                    }
 
-                .color-select {
-                    display: flex;
-                    gap: 1rem;
-                    justify-content: space-between;
-
-                    .color-option {
-                        color: lighten($products-name-text-color, 10%);
-                        background-color: transparent;
-                        font-size: 1rem;
-                        cursor: pointer;
+                    .color-select {
                         display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        gap: 5px;
-                        border: 1px solid darken($border-color, 10%);
-                        height: 40px;
-                        text-align: center;
-                        width: 100%;
-                        transition: all 0.3s;
+                        gap: 1rem;
+                        justify-content: space-between;
 
-                        img {
-                            border-radius: 50%;
+                        .color-option {
+                            color: lighten($products-name-text-color, 10%);
+                            background-color: transparent;
+                            font-size: 1rem;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 5px;
+                            border: 1px solid darken($border-color, 10%);
+                            height: 40px;
+                            text-align: center;
+                            width: 100%;
+                            transition: all 0.3s;
+
+                            img {
+                                border-radius: 50%;
+                            }
                         }
                     }
                 }
@@ -233,6 +240,84 @@
                 background-color: #F6F6FB !important;
                 color: $primary-color !important;
             }
+
+            .product-select__tv {
+                .product-resolution {
+                    padding: 0.5rem 0;
+                    padding-bottom: 0;
+
+                    p {
+                        color: $products-name-text-color;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    .resolution-select {
+                        display: flex;
+                        gap: 1rem;
+                        justify-content: space-between;
+
+                        .resolution-option {
+                            color: lighten($products-name-text-color, 10%);
+                            background-color: transparent;
+                            font-size: 1rem;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 5px;
+                            transition: all 0.3s;
+
+                            img {
+                                border-radius: 50%;
+                            }
+
+                            border: 1px solid darken($border-color, 10%);
+                            height: 40px;
+                            text-align: center;
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .product-screen-size {
+                    padding: 0.5rem 0;
+
+                    p {
+                        color: $products-name-text-color;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    .screen-size-select {
+                        display: flex;
+                        gap: 1rem;
+                        justify-content: space-between;
+
+                        .screen-size-option {
+                            color: lighten($products-name-text-color, 10%);
+                            background-color: transparent;
+                            font-size: 1rem;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 5px;
+                            border: 1px solid darken($border-color, 10%);
+                            height: 40px;
+                            text-align: center;
+                            width: 100%;
+                            transition: all 0.3s;
+                        }
+                    }
+                }
+            }
+
+            .resolution-option.active,
+            .screen-size-option.active {
+                border: 1px solid $primary-color !important;
+                background-color: #F6F6FB !important;
+                color: $primary-color !important;
+            }
+
 
             .payment-button {
                 display: flex;

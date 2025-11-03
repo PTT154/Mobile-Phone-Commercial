@@ -47,6 +47,10 @@
                 text-decoration: none;
                 color: $products-name-text-color;
                 @include text-4();
+
+                &:hover {
+                    color: $primary-color;
+                }
             }
 
             .products-list__price {

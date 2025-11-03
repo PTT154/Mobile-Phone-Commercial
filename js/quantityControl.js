@@ -15,13 +15,13 @@ plus.addEventListener("click", () => {
     a++;
     a = (a < 10) ? "0" + a : a;
     num.innerText = a;
-    updateProductPrice(); // click vào xong mới thực hiện tính toán update lại price
+    updateProductPrice(window.currentProductIndex, window.currentProductType); // click vào xong mới thực hiện tính toán update lại price
 });
 minus.addEventListener("click", () => {
     if (a > 1) {
         a--;
         a = (a < 10) ? "0" + a : a;
         num.innerText = a;
-        updateProductPrice(); // click vào xong mới thực hiện tính toán update lại price
+        updateProductPrice(window.currentProductIndex, window.currentProductType); // click vào xong mới thực hiện tính toán update lại price
     }
 });

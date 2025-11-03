@@ -382,11 +382,17 @@
       <div class="banner__tv-audio">
         <div class="tv">
           <img src="./images/banner/banner-1.jpg" alt="" />
-          <a class="tv__text" href="">Smart TV</a>
+          <div class="tv__text">
+            <h2>Smart TV</h2>
+            <p>Starting Smart TV from $99</p>
+          </div>
         </div>
         <div class="audio">
           <img src="./images/banner/banner-2.jpg" alt="" />
-          <a class="audio__text" href="">Audio</a>
+          <div class="audio__text">
+            <h2>Audio</h2>
+            <p>Starting Audio $16</p>
+          </div>
         </div>
       </div>
 
@@ -438,19 +444,38 @@
         </div>
         <div class="modal-body-right">
           <h2 id="productName">NUUA S4 Pro 5G</h2>
-          <p>
-            <span id="productName-productStorage">8GB+128GB, </span><span id="productName-productColor">Black</span>
+          <!-- Phone Info -->
+          <p id="productInfo-phone">
+            <span id="productName-productStorage">8GB+128GB, </span>
+            <span id="productName-productColor">Black</span>
+          </p>
+
+          <!-- TV Info -->
+          <p id="productInfo-tv">
+            <span id="productName-productResolution">4K UHD, </span>
+            <span id="productName-productScreenSize">43-inch</span>
           </p>
           <div class="product-detail">
-            <div class="product-detail-item">22.5W Flash Charge</div>
-            <div class="product-detail-item">3760mAh Battery</div>
-            <div class="product-detail-item">Qualcomm Snapdragon 675AIE</div>
-            <div class="product-detail-item">
-              Flash In-Display Fingerprint
+            <div class="product-detail__phone">
+              <div class="product-detail-item">22.5W Flash Charge</div>
+              <div class="product-detail-item">3760mAh Battery</div>
+              <div class="product-detail-item">Qualcomm Snapdragon 675AIE</div>
+              <div class="product-detail-item">
+                Flash In-Display Fingerprint
+              </div>
+              <div class="product-detail-item">44MP AI Triple Rear Camera</div>
+              <div class="product-detail-item">15.20cm (5.38) FHD Display</div>
             </div>
-            <div class="product-detail-item">44MP AI Triple Rear Camera</div>
-            <div class="product-detail-item">15.20cm (5.38) FHD Display</div>
+
+            <div class="product-detail__tv">
+              <div class="product-detail-item">55-inch 4K OLED Display</div>
+              <div class="product-detail-item">Smart TV with Wi-Fi & Bluetooth</div>
+              <div class="product-detail-item">Dolby Vision & HDR10 Support</div>
+              <div class="product-detail-item">2x20W Stereo Speakers</div>
+              <div class="product-detail-item">Voice Control Remote</div>
+            </div>
           </div>
+
           <div class="product-price">
             <div class="new-price">
               <span>Price: </span>
@@ -463,30 +488,52 @@
               <span id="discount"></span>
             </div>
           </div>
-          <div class="product-storage">
-            <p>Storage:</p>
-            <div class="storage-select">
-              <button class="storage-option active">8GB + 128GB</button>
-              <button class="storage-option">16GB + 256GB</button>
+
+          <div class="product-select__phone">
+            <div class="product-storage">
+              <p>Storage:</p>
+              <div class="storage-select">
+                <button class="storage-option active">8GB + 128GB</button>
+                <button class="storage-option">16GB + 256GB</button>
+              </div>
+            </div>
+            <div class="product-color">
+              <p>Color:</p>
+              <div class="color-select">
+                <button class="color-option active">
+                  <img class="rounded-circle me-2" src="images/color/black.jpg" alt="" />
+                  Black
+                </button>
+                <button class="color-option">
+                  <img class="rounded-circle me-2" src="images/color/purple.jpg" alt="" />
+                  Purple
+                </button>
+                <button class="color-option">
+                  <img class="rounded-circle me-2" src="images/color/red.jpg" alt="" />
+                  Red
+                </button>
+              </div>
             </div>
           </div>
-          <div class="product-color">
-            <p>Color:</p>
-            <div class="color-select">
-              <button class="color-option active">
-                <img class="rounded-circle me-2" src="images/color/black.jpg" alt="" />
-                Black
-              </button>
-              <button class="color-option">
-                <img class="rounded-circle me-2" src="images/color/purple.jpg" alt="" />
-                Purple
-              </button>
-              <button class="color-option">
-                <img class="rounded-circle me-2" src="images/color/red.jpg" alt="" />
-                Red
-              </button>
+
+          <div class="product-select__tv">
+            <div class="product-resolution">
+              <p>Resolution:</p>
+              <div class="resolution-select">
+                <button class="resolution-option active">4K UHD</button>
+                <button class="resolution-option">8K UHD</button>
+              </div>
+            </div>
+            <div class="product-screen-size">
+              <p>Screen Size:</p>
+              <div class="screen-size-select">
+                <button class="screen-size-option active">43-inch</button>
+                <button class="screen-size-option">55-inch</button>
+                <button class="screen-size-option">65-inch</button>
+              </div>
             </div>
           </div>
+
           <div class="payment-button">
             <div onclick="addProductToCart()">
               <i class="fa-solid fa-cart-shopping"></i>
