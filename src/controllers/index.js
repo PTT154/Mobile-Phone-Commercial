@@ -1,7 +1,8 @@
-import CartItem from "./models/CartItemPhone.js";
+import CartItem from "../models/CartItemPhone.js";
 
 let productsDataPhone = []; //Dùng để lưu mảng các object sản phẩm điện thoại
 let productsDataTV = []; // Dùng để lưu mảng các object sản phẩm tv
+let productsDataAccessory = [] //Dùng để lưu mảng các object sản phẩm accessory
 let cartList = []; //Giỏ hàng
 
 /**
@@ -340,23 +341,97 @@ function updateProductPrice(index, type) {
 window.updateProductPrice = updateProductPrice;
 
 /**
- * Thêm sản phẩm vào giỏ hàng (Đang trong quá trình sửa lại)
+ * Thêm sản phẩm vào giỏ hàng
  */
 const addProductToCart = () => {
-    // lấy product
-    const product = productsDataPhone[currentProductIndex];
+    let product;
+    let cartItem;
 
-    const id = product.id;
-    const name = product.name;
-    const basePrice = product.newPrice;
-    const img = product.img;
-    const color = document.querySelector('.color-option.active').textContent.trim(); //Dùng trim giúp lấy văn bản ko có khoảng trắng ở đầu và cuối
-    const storage = document.querySelector('.storage-option.active').textContent.trim();
+    // lấy số lượng
     const quantity = parseInt(document.querySelector('.quantity-control .num').textContent, 10);
-    const type = product.type;
 
-    const cartItem = new CartItem(id, name, basePrice, img, color, storage, quantity, type);
-    cartList.push(cartItem);
+    if (window.currentProductType === 'phone') {
+        product = productsDataPhone[window.currentProductIndex];
+        const color = document.querySelector('.color-option.active').textContent.trim(); //Dùng trim giúp lấy văn bản ko có khoảng trắng ở đầu và cuối
+        const storage = document.querySelector('.storage-option.active').textContent.trim();
+
+        //Kiểm tra trùng sản phẩm
+        //found là biến tham chiếu (tham chiếu trực tiếp đến đối tượng trong mảng)
+        //thay đổi thuộc tính của found thì phần tử trong mảng cũng thay đổi theo (vì cả hai cùng tham chiếu đến một vùng nhớ)
+        const found = cartList.find(item =>
+            item.id === product.id &&
+            item.type === 'Smartphone' &&
+            item.color === color &&
+            item.storage === storage
+        );
+
+        if (found) {
+            found.quantity += quantity;
+        } else {
+            cartItem = new CartItem(
+                product.id,
+                product.name,
+                product.newPrice,
+                product.img,
+                quantity,
+                'Smartphone',
+                color,
+                storage
+            );
+            cartList.push(cartItem); //Chỉ push khi chưa có sản phẩm trùng
+        }
+    } else if (window.currentProductType === 'tv') {
+        product = productsDataTV[window.currentProductIndex];
+        const resolution = document.querySelector('.resolution-option.active').textContent.trim();
+        const screenSize = document.querySelector('.screen-size-option.active').textContent.trim();
+
+        const found = cartList.find(item =>
+            item.id === product.id &&
+            item.type === 'Television' &&
+            item.resolution === resolution &&
+            item.screenSize === screenSize
+        );
+
+        if (found) {
+            found.quantity += quantity;
+        } else {
+            cartItem = new CartItem(
+                product.id,
+                product.name,
+                product.newPrice,
+                product.img,
+                quantity,
+                'Television',
+                null, //color
+                null, //storage
+                resolution,
+                screenSize
+            );
+            cartList.push(cartItem); //Chỉ push khi chưa có sản phẩm trùng
+        }
+    } else if (window.currentProductType === 'accessory') {
+        product = productsDataAccessory[window.currentProductIndex];
+
+        const found = cartList.find(item =>
+            item.id === product.id &&
+            item.type === 'Accessory'
+        );
+
+        if (found) {
+            found.quantity += quantity;
+        } else {
+            cartItem = new CartItem(
+                product.id,
+                product.name,
+                product.newPrice,
+                product.img,
+                quantity,
+                'Accessory'
+                // Các thuộc tính khác để mặc định null
+            );
+            cartList.push(cartItem);
+        }
+    }
 
     console.log(cartList);
 
@@ -368,6 +443,7 @@ const addProductToCart = () => {
 
 window.addProductToCart = addProductToCart;
 
+//Cập nhât số lượng hàng trong giỏ hàng
 const updateCartCount = () => {
     document.getElementById('cartCount').textContent = cartList.length;
 }
