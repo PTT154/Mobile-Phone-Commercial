@@ -46,6 +46,10 @@ $border-color: #dee2e6;
     font-size: 1.75rem;
 }
 
+@mixin text-8() {
+    font-size: 2rem;
+}
+
 @mixin text-12() {
     font-size: 3rem;
     line-height: 1.3;
