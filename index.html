@@ -75,14 +75,50 @@
                 <i class="fa-solid fa-user"></i>
               </a>
             </li>
+
             <li class="cart">
               <a href="">
                 <i class="fa-solid fa-cart-shopping"></i>
 
                 <span id="cartCount">0</span>
               </a>
+
+              <!-- cart dropdown -->
+              <div class="cart-dropdown">
+                <div class="cart-dropdown__inner">
+                  <ul class="cart-dropdown__list" id="cartDropdownList">
+
+                    <!-- TEST LAYOUT -->
+                    <!-- <li class="cart-dropdown__item">
+                      <img class="cart-dropdown__item-img" src="./images/products/product-01.jpg"
+                        style="width: 65px; height: auto;" alt="">
+                      <div class="cart-dropdown__item-info">
+                        <div class="cart-dropdown__item-name">NUUA S4 Pro 5G Chrome Silver 6GB+128GB</div>
+                        <div class="cart-dropdown__item-meta">$299 × 2</div>
+                      </div>
+                    </li>
+                    <li class="cart-dropdown__item">
+                      <img class="cart-dropdown__item-img" src="./images/products/product-08.png"
+                        style="width: 65px; height: auto;" alt="">
+                      <div class="cart-dropdown__item-info">
+                        <div class="cart-dropdown__item-name">Charger & USB Cable</div>
+                        <div class="cart-dropdown__item-meta">$25 × 1</div>
+                      </div>
+                    <li class="cart-dropdown__item">
+                      <img class="cart-dropdown__item-img" src="./images/products/product-10.jpg"
+                        style="width: 65px; height: auto;" alt="">
+                      <div class="cart-dropdown__item-info">
+                        <div class="cart-dropdown__item-name">Charger & USB Cable</div>
+                        <div class="cart-dropdown__item-meta">$25 × 1</div>
+                      </div>
+                    </li> -->
+                    
+                  </ul>
+                </div>
+              </div>
             </li>
-            <li>
+
+            <li class="search">
               <a href="">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </a>
@@ -606,6 +642,7 @@
   <script src="./js/quantityControl.js"></script>
   <script src="./js/resetOptions.js"></script>
   <script src="./js/calcPriceAfterSelect.js"></script>
+  <script src="./js/cartDropDown.js"></script>
 </body>
 
 </html>

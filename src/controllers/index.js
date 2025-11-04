@@ -1,4 +1,4 @@
-import CartItem from "../models/CartItemPhone.js";
+import CartItem from "../models/CartItem.js";
 
 let productsDataPhone = []; //Dùng để lưu mảng các object sản phẩm điện thoại
 let productsDataTV = []; // Dùng để lưu mảng các object sản phẩm tv
@@ -273,7 +273,7 @@ function updateProductPrice(index, type) {
     // Phải để ở trên này vì mỗi lần mở modal thì filter của ảnh điện thoại sẽ bị giữ lại, tivi cũng bị dính filter (nếu mở tivi sau điện thoại)
     getEle('productImg').style.filter = "none"; // Xóa filter (màu của điện thoại) mỗi lần mở lại modal (Mỗi lần mở modal thì update) 
     let product;
-    let basePrice;
+    let cartItem; //Dùng để tạo object dựa trên class CartItem
     // Lấy số lượng sản phẩm
     const quantity = parseInt(document.querySelector('.quantity-control .num').textContent, 10);
 
@@ -283,26 +283,46 @@ function updateProductPrice(index, type) {
         getEle('productInfo-tv').style.display = 'none';
 
         product = productsDataPhone[index];
-        // Lấy giá gốc từ sản phẩm đang mở modal
-        basePrice = product.newPrice;
 
-        // Lấy dung lượng đang chọn
-        const storageIndex = Array.from(document.querySelectorAll('.storage-option')).findIndex(opt => opt.classList.contains('active'));
+        //Lấy độ phân giải đang chọn
+        const storage = document.querySelector('.storage-option.active').textContent.trim();
+        //Lấy kích thước màn hình đang chọn
+        const color = document.querySelector('.color-option.active').textContent.trim();
 
-        if (storageIndex === 1) {
-            basePrice += 50;
-            getEle('productName-productStorage').innerHTML = `16GB+256GB, `;
-        } else {
-            getEle('productName-productStorage').innerHTML = `8GB+128GB, `;
-        }
+        //(Không dùng cách này nữa, dùng phương thức của class CartItem)
+        // // Lấy giá gốc từ sản phẩm đang mở modal
+        // basePrice = product.newPrice;
+        // // Lấy dung lượng đang chọn
+        // const storageIndex = Array.from(document.querySelectorAll('.storage-option')).findIndex(opt => opt.classList.contains('active'));
 
-        // Lấy màu đang chọn
-        const colorIndex = Array.from(document.querySelectorAll('.color-option')).findIndex(opt => opt.classList.contains('active'));
+        // if (storageIndex === 1) {
+        //     basePrice += 50;
+        //     getEle('productName-productStorage').innerHTML = `16GB+256GB, `;
+        // } else {
+        //     getEle('productName-productStorage').innerHTML = `8GB+128GB, `;
+        // }
 
-        if (colorIndex === 2) {
+        // // Lấy màu đang chọn
+        // const colorIndex = Array.from(document.querySelectorAll('.color-option')).findIndex(opt => opt.classList.contains('active'));
+
+        //Tạo đối tượng từ sản phẩm đang chọn (để dùng phương thức tính tiền)
+        cartItem = new CartItem(
+            product.id,
+            product.name,
+            product.newPrice,
+            product.img,
+            quantity,
+            'Smartphone',
+            color,
+            storage
+        );
+        getEle('productName-productStorage').innerHTML = `${storage}, `;
+        getEle('productName-productColor').innerHTML = color;
+
+        if (color === 'Red') {
             getEle('productName-productColor').innerHTML = `Red`;
             getEle('productImg').style.filter = "sepia(1) hue-rotate(-60deg) saturate(4)";
-        } else if (colorIndex === 1) {
+        } else if (color === 'Purple') {
             getEle('productName-productColor').innerHTML = `Purple`;
             getEle('productImg').style.filter = "sepia(1) hue-rotate(-130deg) saturate(4)";
         } else {
@@ -316,29 +336,66 @@ function updateProductPrice(index, type) {
         getEle('productInfo-tv').style.display = 'block';
 
         product = productsDataTV[index];
-        basePrice = product.newPrice;
 
         //Lấy độ phân giải đang chọn
         const resolution = document.querySelector('.resolution-option.active').textContent.trim();
         //Lấy kích thước màn hình đang chọn
         const screenSize = document.querySelector('.screen-size-option.active').textContent.trim();
 
-        if (resolution === '8K UHD') basePrice += 200;
+        //(Bỏ cách này dùng phương thức của class CartItem)
+        // basePrice = product.newPrice;
+        // if (resolution === '8K UHD') basePrice += 200;
 
-        if (screenSize === '65-inch') basePrice += 100;
-        else if (screenSize === '55-inch') basePrice += 50;
+        // if (screenSize === '65-inch') basePrice += 100;
+        // else if (screenSize === '55-inch') basePrice += 50;
+
+        //Tạo đối tượng từ sản phẩm đang chọn (để dùng phương thức tính tiền)
+        cartItem = new CartItem(
+            product.id,
+            product.name,
+            product.newPrice,
+            product.img,
+            quantity,
+            'Television',
+            null,
+            null,
+            resolution,
+            screenSize
+        );
 
         // Hiển thị lựa chọn lên modal
         getEle('productName-productResolution').innerHTML = `${resolution}, `;
         getEle('productName-productScreenSize').innerHTML = `${screenSize}`;
     }
 
-    // Tính giá tổng
-    const totalPrice = basePrice * quantity;
+    // Tính giá tổng bằng phương thức getPrice
+    const totalPrice = cartItem.getPrice() * quantity;
     getEle('productPrice').innerHTML = `$${totalPrice}.00`;
 }
 
 window.updateProductPrice = updateProductPrice;
+
+/**
+ * render dropdown giỏ hàng
+ */
+const renderCartDropdown = (data) => {
+    let contentHTML = "";
+    for (let i = 0; i < data.length; i++) {
+        const item = data[i];
+        contentHTML += `
+            <li class="cart-dropdown__item">
+                <img class="cart-dropdown__item-img" src="./images/products/${item.img}"
+                    style="width: 65px; height: auto;" alt="">
+                <div class="cart-dropdown__item-info">
+                    <div class="cart-dropdown__item-name">${item.name}</div>
+                    <div class="cart-dropdown__item-meta">${item.getPrice()} × ${item.quantity}</div>
+                </div>
+            </li>
+        `;
+    }
+
+    getEle('cartDropdownList').innerHTML = contentHTML;
+}
 
 /**
  * Thêm sản phẩm vào giỏ hàng
@@ -355,90 +412,153 @@ const addProductToCart = () => {
         const color = document.querySelector('.color-option.active').textContent.trim(); //Dùng trim giúp lấy văn bản ko có khoảng trắng ở đầu và cuối
         const storage = document.querySelector('.storage-option.active').textContent.trim();
 
-        //Kiểm tra trùng sản phẩm
-        //found là biến tham chiếu (tham chiếu trực tiếp đến đối tượng trong mảng)
-        //thay đổi thuộc tính của found thì phần tử trong mảng cũng thay đổi theo (vì cả hai cùng tham chiếu đến một vùng nhớ)
-        const found = cartList.find(item =>
-            item.id === product.id &&
-            item.type === 'Smartphone' &&
-            item.color === color &&
-            item.storage === storage
+        // (Không dùng cách này nữa giờ dùng phương thức isSameItem để check trùng lặp sản phẩm và getPrice để tính giá từng loại sản phẩm)
+        // //Kiểm tra trùng sản phẩm
+        // //found là biến tham chiếu (tham chiếu trực tiếp đến đối tượng trong mảng)
+        // //thay đổi thuộc tính của found thì phần tử trong mảng cũng thay đổi theo (vì cả hai cùng tham chiếu đến một vùng nhớ)
+        // const found = cartList.find(item =>
+        //     item.id === product.id &&
+        //     item.type === 'Smartphone' &&
+        //     item.color === color &&
+        //     item.storage === storage
+        // );
+
+        // if (found) {
+        //     found.quantity += quantity;
+        // } else {
+        //     cartItem = new CartItem(
+        //         product.id,
+        //         product.name,
+        //         product.newPrice,
+        //         product.img,
+        //         quantity,
+        //         'Smartphone',
+        //         color,
+        //         storage
+        //     );
+        //     cartList.push(cartItem); //Chỉ push khi chưa có sản phẩm trùng
+        // }
+
+        cartItem = new CartItem(
+            product.id,
+            product.name,
+            product.newPrice,
+            product.img,
+            quantity,
+            'Smartphone',
+            color,
+            storage
         );
 
+        //Dùng phương thức isSameItem để kiểm tra trùng
+        //found là biến tham chiếu (tham chiếu trực tiếp đến đối tượng trong mảng)
+        //thay đổi thuộc tính của found thì phần tử trong mảng cũng thay đổi theo (vì cả hai cùng tham chiếu đến một vùng nhớ)
+        const found = cartList.find(item => item.isSameItem(cartItem)); //find là phương thức tìm phần tử đầu tiên thỏa mãn điều kiện truyền vào (là sản phẩm đã trùng với sản phẩm trong mảng)
         if (found) {
-            found.quantity += quantity;
+            found.quantity += quantity; //Tăng số lượng sản phẩm trùng
         } else {
-            cartItem = new CartItem(
-                product.id,
-                product.name,
-                product.newPrice,
-                product.img,
-                quantity,
-                'Smartphone',
-                color,
-                storage
-            );
-            cartList.push(cartItem); //Chỉ push khi chưa có sản phẩm trùng
+            cartList.push(cartItem);
         }
     } else if (window.currentProductType === 'tv') {
         product = productsDataTV[window.currentProductIndex];
         const resolution = document.querySelector('.resolution-option.active').textContent.trim();
         const screenSize = document.querySelector('.screen-size-option.active').textContent.trim();
 
-        const found = cartList.find(item =>
-            item.id === product.id &&
-            item.type === 'Television' &&
-            item.resolution === resolution &&
-            item.screenSize === screenSize
-        );
+        // const found = cartList.find(item =>
+        //     item.id === product.id &&
+        //     item.type === 'Television' &&
+        //     item.resolution === resolution &&
+        //     item.screenSize === screenSize
+        // );
 
+        // if (found) {
+        //     found.quantity += quantity;
+        // } else {
+        //     cartItem = new CartItem(
+        //         product.id,
+        //         product.name,
+        //         product.newPrice,
+        //         product.img,
+        //         quantity,
+        //         'Television',
+        //         null, //color
+        //         null, //storage
+        //         resolution,
+        //         screenSize
+        //     );
+        //     cartList.push(cartItem); //Chỉ push khi chưa có sản phẩm trùng
+        // }
+
+        cartItem = new CartItem(
+            product.id,
+            product.name,
+            product.newPrice,
+            product.img,
+            quantity,
+            'Television',
+            null, //color
+            null, //storage
+            resolution,
+            screenSize,
+        )
+
+        const found = cartList.find(item => item.isSameItem(cartItem)); //find là phương thức tìm phần tử đầu tiên thỏa mãn điều kiện truyền vào (là sản phẩm đã trùng với sản phẩm trong mảng)
         if (found) {
-            found.quantity += quantity;
+            found.quantity += quantity; //Tăng số lượng sản phẩm trùng
         } else {
-            cartItem = new CartItem(
-                product.id,
-                product.name,
-                product.newPrice,
-                product.img,
-                quantity,
-                'Television',
-                null, //color
-                null, //storage
-                resolution,
-                screenSize
-            );
-            cartList.push(cartItem); //Chỉ push khi chưa có sản phẩm trùng
+            cartList.push(cartItem);
         }
     } else if (window.currentProductType === 'accessory') {
         product = productsDataAccessory[window.currentProductIndex];
 
-        const found = cartList.find(item =>
-            item.id === product.id &&
-            item.type === 'Accessory'
-        );
+        // const found = cartList.find(item =>
+        //     item.id === product.id &&
+        //     item.type === 'Accessory'
+        // );
 
+        // if (found) {
+        //     found.quantity += quantity;
+        // } else {
+        //     cartItem = new CartItem(
+        //         product.id,
+        //         product.name,
+        //         product.newPrice,
+        //         product.img,
+        //         quantity,
+        //         'Accessory'
+        //         // Các thuộc tính khác để mặc định null
+        //     );
+        //     cartList.push(cartItem);
+        // }
+
+        cartItem = new CartItem(
+            product.id,
+            product.name,
+            product.newPrice,
+            product.img,
+            quantity,
+            'Accessory',
+            // Các thuộc tính khác để mặc định null
+        )
+
+        const found = cartList.find(item => item.isSameItem(cartItem)); //find là phương thức tìm phần tử đầu tiên thỏa mãn điều kiện truyền vào (là sản phẩm đã trùng với sản phẩm trong mảng)
         if (found) {
-            found.quantity += quantity;
+            found.quantity += quantity; //Tăng số lượng sản phẩm trùng
         } else {
-            cartItem = new CartItem(
-                product.id,
-                product.name,
-                product.newPrice,
-                product.img,
-                quantity,
-                'Accessory'
-                // Các thuộc tính khác để mặc định null
-            );
             cartList.push(cartItem);
         }
     }
 
     console.log(cartList);
+    console.log(cartItem.getPrice());
 
     document.body.classList.remove('modal-open-prevent-scroll'); // Mở lại scroll
     modal.classList.remove('open'); //Đóng modal sau khi Add to Cart
     updateCartCount(); //Hiện số lượng sản phẩm đã thêm trên giỏ hàng
     setLocalStorage(); //Lưu cartList vào local
+
+    // render lại giỏ hàng
+    renderCartDropdown(cartList);
 }
 
 window.addProductToCart = addProductToCart;
@@ -464,9 +584,39 @@ const getLocalStorage = () => {
     //convert từ dataString => JSON
     const dataJson = JSON.parse(dataString);
     //phục hồi dữ liệu cho cartList
-    cartList = dataJson;
+    // Chuyển từng object thành CartItem
+    //Sau khi lấy dữ liệu từ localStorage phải chuyển từng object lại thành instance của CartItem
+    cartList = dataJson.map(item => new CartItem(
+        item.id,
+        item.name,
+        item.basePrice,
+        item.img,
+        item.quantity,
+        item.type,
+        item.color,
+        item.storage,
+        item.resolution,
+        item.screenSize
+    ));
+
+    /**
+     * Giải thích lý do cần làm thế này
+     * cartList là mảng lưu các object (các sản phẩm trong giỏ hàng).
+     * Nhưng nếu lưu vào localStorage rồi lấy ra, các object này không còn là
+     * instance của class CartItem mà chỉ là plain object (object thường).
+     * Vì vậy, các phương thức của class như isSameItem, getPrice sẽ không hoạt động trên các object này.
+     * 
+     * Định nghĩa instance
+     * Instance là một đối tượng được tạo ra từ một class (lớp) bằng từ khóa new.
+     * Nó có đầy đủ thuộc tính và phương thức (function) của class đó.
+     */
+
+
     //khôi phục dữ liệu xong thì update lại số lượng item trong cart
     updateCartCount();
+
+    // render lại giỏ hàng
+    renderCartDropdown(cartList);
 }
 
 getLocalStorage();
