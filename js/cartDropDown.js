@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //Toggle (thêm hoặc xóa) class .open trên cart
     cartToggle.addEventListener('click', function (e) {
-        e.preventDefault(); //Ngăn không cho chueyern trang
+        e.preventDefault(); //Ngăn không cho chuyển trang
         cart.classList.toggle('open');
     });
 

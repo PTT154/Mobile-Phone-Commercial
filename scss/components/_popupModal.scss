@@ -100,7 +100,6 @@
                         padding: 10px 30px;
                         margin-bottom: 1rem;
 
-
                         .product-detail-item {
                             position: relative;
 
@@ -346,7 +345,7 @@
 
 .modal.open {
     opacity: 1;
-    z-index: 999;
+    z-index: 99999;
 
     .modal-inner {
         transform: translateY(0); // Khi mở, modal trượt xuống
