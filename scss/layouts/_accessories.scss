@@ -1,0 +1,34 @@
+.accessories {
+  margin-top: 3rem;
+  width: 100%;
+
+  .accessories__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    align-items: center;
+
+    a {
+      text-decoration: none;
+      color: black;
+      font-weight: 500;
+      @include text-8();
+      line-height: 1.2;
+    }
+    // Button view all
+    button {
+      @include small-btn(transparent, $primary-color, $primary-color, white);
+      padding: 0.5rem 1rem;
+      border: 0.3px solid $primary-color;
+      background: transparent;
+      @include text-2();
+    }
+  }
+
+  .listAccessories {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+  }
+}
