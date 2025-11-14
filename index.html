@@ -616,6 +616,80 @@
       </div>
     </div>
   </div>
+
+  <!-- Purchase Modal -->
+  <!-- Popup Cart Layout -->
+  <div class="cart-popup-overlay" style="display: none;">
+    <div class="cart-popup">
+      <div class="cart-popup__header">
+        <h3>Your Cart</h3>
+        <button class="cart-popup__close" onclick="closeCartPopup()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="cart-popup__table">
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>SubTotal</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Example item row -->
+            <tr>
+              <td class="cart-popup__product">
+                <img src="./images/products/product-01.jpg" alt="" />
+                <span>NUUA S4 Pro 5G Chrome Silver 6GB+128GB</span>
+              </td>
+              <td class="cart-popup__price">$299</td>
+              <td class="cart-popup__quantity">
+                <button class="qty-btn">−</button>
+                <span>2</span>
+                <button class="qty-btn">+</button>
+              </td>
+              <td class="cart-popup__subtotal">
+                <span class="subtotal-value">$598</span>
+                <span class="subtotal-save">Save $82</span>
+              </td>
+              <td>
+                <button class="cart-popup__remove">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td class="cart-popup__product">
+                <img src="./images/products/product-09.jpg" alt="" />
+                <span>Charger & USB Cable</span>
+              </td>
+              <td class="cart-popup__price">$25</td>
+              <td class="cart-popup__quantity">
+                <button class="qty-btn">−</button>
+                <span>1</span>
+                <button class="qty-btn">+</button>
+              </td>
+              <td class="cart-popup__subtotal">
+                <span class="subtotal-value">$25</span>
+                <span class="subtotal-save">Save $1</span>
+              </td>
+              <td>
+                <button class="cart-popup__remove">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cart-popup__footer">
+        <button class="cart-popup__checkout">Checkout</button>
+      </div>
+    </div>
+  </div>
   <br />
   <br />
   <br />
