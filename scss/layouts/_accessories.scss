@@ -15,6 +15,7 @@
       @include text-8();
       line-height: 1.2;
     }
+
     // Button view all
     button {
       @include small-btn(transparent, $primary-color, $primary-color, white);
