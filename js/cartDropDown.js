@@ -16,4 +16,12 @@ document.addEventListener('DOMContentLoaded', function () {
             cart.classList.remove('open');
         }
     });
+
+    //Đóng khi click vào View Cart hoặc Checkout button
+    const cartButtons = cart.querySelectorAll('.view-cart__button, .checkout__button');
+    cartButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            cart.classList.remove('open');
+        });
+    });
 });

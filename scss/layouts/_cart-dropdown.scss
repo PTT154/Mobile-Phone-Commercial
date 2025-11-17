@@ -68,6 +68,13 @@
                     max-height: 320px; // hoặc giá trị bạn muốn
                     overflow-y: auto;
 
+                    .cart-dropdown__empty {
+                        text-align: center;
+                        padding: 20px 0;
+                        color: $products-name-text-color;
+                        justify-content: center;
+                    }
+
                     .cart-dropdown__item {
                         display: flex;
                         padding: 0;

@@ -140,8 +140,8 @@
                       <span class="cart-dropdown__subtotal-value" id="cartSubtotalValue">$0</span>
                     </div>
                     <div class="cart-dropdown__actions">
-                      <button class="view-cart__button">View Cart</button>
-                      <button class="checkout__button">Checkout</button>
+                      <button onclick="handleOpenCheckoutModal()" class="view-cart__button">View Cart</button>
+                      <button class="checkout__button" onclick="handleCheckout()">Checkout</button>
                     </div>
                   </div>
                 </div>
@@ -626,7 +626,7 @@
               <i class="fa-solid fa-cart-shopping"></i>
               Add to Cart
             </div>
-            <div>
+            <div onclick="handleBtnBuyNow()">
               <i class="fa-solid fa-bolt-lightning"></i>
               Buy Now
             </div>
@@ -638,74 +638,58 @@
 
   <!-- Purchase Modal -->
   <!-- Popup Cart Layout -->
-  <div class="cart-popup-overlay" style="display: none;">
-    <div class="cart-popup">
-      <div class="cart-popup__header">
-        <h3>Your Cart</h3>
-        <button class="cart-popup__close" onclick="closeCartPopup()">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+  <div class="checkout-modal" id="checkout-modal">
+    <div class="modal-inner">
+      <div class="modal-header">
+        <div class="modal-header-title">Checkout</div>
+        <div id="closeCheckoutModal">
+          <i class="fa-solid fa-x"></i>
+        </div>
       </div>
-      <div class="cart-popup__table">
-        <table>
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>SubTotal</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Example item row -->
-            <tr>
-              <td class="cart-popup__product">
-                <img src="./images/products/product-01.jpg" alt="" />
-                <span>NUUA S4 Pro 5G Chrome Silver 6GB+128GB</span>
-              </td>
-              <td class="cart-popup__price">$299</td>
-              <td class="cart-popup__quantity">
-                <button class="qty-btn">−</button>
-                <span>2</span>
-                <button class="qty-btn">+</button>
-              </td>
-              <td class="cart-popup__subtotal">
-                <span class="subtotal-value">$598</span>
-                <span class="subtotal-save">Save $82</span>
-              </td>
-              <td>
-                <button class="cart-popup__remove">
-                  <i class="fa-solid fa-xmark"></i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td class="cart-popup__product">
-                <img src="./images/products/product-09.jpg" alt="" />
-                <span>Charger & USB Cable</span>
-              </td>
-              <td class="cart-popup__price">$25</td>
-              <td class="cart-popup__quantity">
-                <button class="qty-btn">−</button>
-                <span>1</span>
-                <button class="qty-btn">+</button>
-              </td>
-              <td class="cart-popup__subtotal">
-                <span class="subtotal-value">$25</span>
-                <span class="subtotal-save">Save $1</span>
-              </td>
-              <td>
-                <button class="cart-popup__remove">
-                  <i class="fa-solid fa-xmark"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="cart-popup__footer">
-        <button class="cart-popup__checkout">Checkout</button>
+      <div class="modal-body">
+        <div class="cart-content">
+          <div class="cart-main">
+            <div class="cart-table-wrapper">
+              <table class="cart-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody id="checkoutCartList">
+                  <!-- More product rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="cart-summary">
+            <div class="cart-summary-box">
+              <h2 class="cart-summary-title">Summary</h2>
+              <div class="cart-summary-row">
+                <span>Subtotal</span>
+                <span id="subtotal"></span>
+              </div>
+              <div class="cart-summary-row">
+                <span>Taxes</span>
+                <span>$1.99</span>
+              </div>
+              <div class="cart-summary-row">
+                <span>Shipping</span>
+                <span>$0.00</span>
+              </div>
+              <hr />
+              <div class="cart-summary-row cart-summary-total">
+                <span>Total</span>
+                <span id="total"></span>
+              </div>
+              <button class="cart-checkout-btn" onclick="handleCheckout()">Checkout</button>
+              <button class="cart-clear-btn" onclick="handleClearCart()">Clear Cart</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -816,6 +800,12 @@
       </div>
     </div>
   </footer>
+
+  <!-- back to top -->
+  <a href="#" class="cd-top text-replace js-cd-top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </a>
+
   <!-- jquery -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -830,6 +820,9 @@
       autoplay: true,
     });
   </script>
+
+  <script src="./js/back-to-top.js"></script>
+  <script src="./js/util.js"></script>
 
   <!-- axios -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.11.0/axios.min.js"
