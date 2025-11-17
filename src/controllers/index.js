@@ -158,7 +158,7 @@ const renderProducts_TV = (data) => {
                     </div>
                 </div>
                 <div class="products-list__btn">
-                    <button>Buy Now</button>
+                    <button class="openModal" data-index="${i}" onclick="handleOpenProductModal(${i}, 'tv', event)">Buy Now</button>
                     <button>Learn More</button>
                 </div>
             </div>
