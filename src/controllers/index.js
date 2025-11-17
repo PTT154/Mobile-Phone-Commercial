@@ -31,7 +31,6 @@ export const getEle = (id) => document.getElementById(id);
 /**
  * Tính số sao đánh giá
  */
-
 const renderRating = (rating) => {
     let phanNguyen = Math.floor(rating);
     let phanThapPhan = rating - phanNguyen;
@@ -56,7 +55,6 @@ const renderRating = (rating) => {
 /**
  * render danh sách products ra giao diện
  */
-
 const renderListProducts = (data) => {
     //   console.log("renderProducts", data);
     let contentHTML = "";
@@ -114,7 +112,9 @@ const renderListProducts = (data) => {
     });
 };
 
-// TV
+/**
+ * API TV
+ */
 const getListProducts_TV = () => {
     const promise = axios({
         url: "https://68fa5915ef8b2e621e7fb0ed.mockapi.io/api/TVs",
@@ -132,6 +132,9 @@ const getListProducts_TV = () => {
 
 getListProducts_TV();
 
+/**
+ * Render TV
+ */
 const renderProducts_TV = (data) => {
     let contentHTML = "";
     for (let i = 0; i < data.length; i++) {
@@ -189,7 +192,9 @@ const renderProducts_TV = (data) => {
     });
 };
 
-// Accessories
+/**
+ * API Accessories
+ */
 const getListAccessories = () => {
     const promise = axios({
         url: "https://691600bd465a9144626e8c11.mockapi.io/accessories/accessories",
@@ -207,6 +212,9 @@ const getListAccessories = () => {
 
 getListAccessories();
 
+/** 
+ * Render Accessories
+ */
 const renderAccessories = (data) => {
     let contentHTML = "";
     for (let i = 0; i < data.length; i++) {
@@ -240,6 +248,7 @@ const renderAccessories = (data) => {
     }
     document.getElementById("listAccessories").innerHTML = contentHTML;
 
+    // render list thì chạy lại owl carousel
     $(".accessories__listProduct").owlCarousel("destroy"); // Xóa carousel cũ nếu có
     $(".accessories__listProduct").owlCarousel({
         nav: true,
@@ -272,6 +281,9 @@ const modal = getEle("modal");
 let currentProductIndex = null; //Dùng để lưu index sản phẩm đang mở modal
 let currentProductType = null; //Dùng để kiểm tra loại sản phẩm và show ra thông tin tương ứng
 
+/** 
+ * Mở modal và in thông tin sản phẩm ra
+ */
 const handleOpenProductModal = (index, type, event) => {
     if (event) event.preventDefault(); //Ngăn reload lại trang khi click vào những thẻ a
     window.currentProductIndex = index; // Lưu biến currentProductIndex và currentProductType lên đối tượng window
@@ -283,6 +295,7 @@ const handleOpenProductModal = (index, type, event) => {
 
     let product;
 
+    // Lấy sản phẩm dựa vào index và type
     if (type === "phone") product = productsDataPhone[index];
     else if (type === "tv") product = productsDataTV[index];
     else if (type === "accessory") product = productsDataAccessory[index];
@@ -327,7 +340,7 @@ const handleOpenProductModal = (index, type, event) => {
 
 window.handleOpenProductModal = handleOpenProductModal;
 
-// Khóa scroll khi mở modal
+// Đóng modal khi click nút close và mở lại scroll
 closeBtn.addEventListener("click", () => {
     document.body.classList.remove("modal-open-prevent-scroll"); // Mở lại scroll
     modal.classList.remove("open");
@@ -461,8 +474,6 @@ function updateProductPrice(index, type) {
 
         product = productsDataAccessory[index];
 
-
-
         cartItem = new CartItem(
             product.id,
             product.name,
@@ -481,49 +492,64 @@ function updateProductPrice(index, type) {
 window.updateProductPrice = updateProductPrice;
 
 /**
- * render dropdown giỏ hàng
+ * Xử lý nút Buy Now trên modal
+ */
+const handleBtnBuyNow = () => {
+    addProductToCart();
+    handleOpenCheckoutModal();
+}
+
+window.handleBtnBuyNow = handleBtnBuyNow;
+
+/**
+ * Render dropdown giỏ hàng
  */
 const renderCartDropdown = (data) => {
     let contentHTML = "";
-    for (let i = 0; i < data.length; i++) {
-        const item = data[i];
 
-        //Xác định filter màu cho ảnh sản phẩm
-        let filter = "none";
-        if (item.color === "Red") {
-            filter = "sepia(1) hue-rotate(-60deg) saturate(4)";
-        } else if (item.color === "Purple") {
-            filter = "sepia(1) hue-rotate(-130deg) saturate(4)";
-        } else {
-            filter = "none"; // Xóa filter
-        }
+    if (data.length === 0) {
+        contentHTML = `<li class="cart-dropdown__empty">Your cart is empty.</li>`;
+    } else {
+        for (let i = 0; i < data.length; i++) {
+            const item = data[i];
 
-        //Chuỗi mô tả option của sản phẩm
-        let optionText = "";
-        if (item.type === "Smartphone") {
-            optionText = `${item.color ? item.color + " " : ""}${item.storage ? item.storage : ""
-                }`;
-        } else if (item.type === "Television") {
-            optionText = `${item.screenSize ? item.screenSize + " " : ""}${item.resolution ? item.resolution : ""
-                }`;
-        } // Accessory không cần optionText
+            //Xác định filter màu cho ảnh sản phẩm
+            let filter = "none";
+            if (item.color === "Red") {
+                filter = "sepia(1) hue-rotate(-60deg) saturate(4)";
+            } else if (item.color === "Purple") {
+                filter = "sepia(1) hue-rotate(-130deg) saturate(4)";
+            } else {
+                filter = "none"; // Xóa filter
+            }
 
-        contentHTML += `
+            //Chuỗi mô tả option của sản phẩm
+            let optionText = "";
+            if (item.type === "Smartphone") {
+                optionText = `${item.color ? item.color + " " : ""}${item.storage ? item.storage : ""
+                    }`;
+            } else if (item.type === "Television") {
+                optionText = `${item.screenSize ? item.screenSize + " " : ""}${item.resolution ? item.resolution : ""
+                    }`;
+            } // Accessory không cần optionText
+
+            contentHTML += `
             <li class="cart-dropdown__item">
                 <a class="remove-cart-item__button" href="#" onclick="removeCartItem(${i}, event); return false;">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
                 <img class="cart-dropdown__item-img" src="./images/products/${item.img
-            }"
-                    style="width: 65px; height: auto; filter: ${filter};" alt="">
+                }"
+                    style="width: 65px; height: auto; filter: ${filter};" alt="${item.name}">
                 <div class="cart-dropdown__item-info">
                     <div class="cart-dropdown__item-name">${item.name
-            } ${optionText}</div>
+                } ${optionText}</div>
                     <div class="cart-dropdown__item-meta">$${item.getPrice()} × ${item.quantity
-            }</div>
+                }</div>
                 </div>
             </li>
         `;
+        }
     }
 
     getEle("cartDropdownList").innerHTML = contentHTML;
@@ -550,6 +576,7 @@ function removeCartItem(index, event) {
     updateCartCount();
     setLocalStorage();
     renderCartDropdown(cartList);
+    renderCheckoutCartList(cartList);
 }
 
 window.removeCartItem = removeCartItem;
@@ -724,17 +751,162 @@ const addProductToCart = () => {
 
     // render lại giỏ hàng
     renderCartDropdown(cartList);
+    renderCheckoutCartList(cartList);
 };
 
 window.addProductToCart = addProductToCart;
 
-//Cập nhât số lượng hàng trong giỏ hàng
+/**
+ * Cập nhât số lượng hàng trong giỏ hàng
+ */
 const updateCartCount = () => {
     const totalItems = cartList.reduce((total, item) => total + item.quantity, 0);
     document.getElementById("cartCount").textContent = totalItems;
 };
 
-// setLocalStorage (Lưu mảng cartList trong local)
+/**
+ * Mở modal checkout
+ */
+const handleOpenCheckoutModal = () => {
+    getEle("checkout-modal").classList.add("open");
+    document.body.classList.add("modal-open-prevent-scroll"); // Ngăn scroll
+}
+
+window.handleOpenCheckoutModal = handleOpenCheckoutModal;
+
+// Đóng modal checkout và mở lại scroll
+getEle("closeCheckoutModal").addEventListener("click", () => {
+    getEle("checkout-modal").classList.remove("open");
+    document.body.classList.remove("modal-open-prevent-scroll"); // Mở lại scroll
+});
+
+//Đóng modal khi click ra ngoài popup
+getEle("checkout-modal").addEventListener("click", function (e) {
+    // Nếu click vào chính modal (nền), chứ không phải modal-inner
+    if (e.target === getEle("checkout-modal")) {
+        getEle("checkout-modal").classList.remove("open");
+        document.body.classList.remove("modal-open-prevent-scroll");
+    }
+});
+
+/**
+ * Render danh sách giỏ hàng trong checkout modal
+ */
+const renderCheckoutCartList = (data) => {
+    let contentHTML = "";
+    if (data.length === 0) {
+        contentHTML = `<tr><td colspan="4" style="text-align: center; padding: 20px 0; color: gray">Your cart is empty.</td></tr>`;
+    } else {
+        for (let i = 0; i < data.length; i++) {
+            const item = data[i];
+
+            //Xác định filter màu cho ảnh sản phẩm
+            let filter = "none";
+            if (item.color === "Red") {
+                filter = "sepia(1) hue-rotate(-60deg) saturate(4)";
+            } else if (item.color === "Purple") {
+                filter = "sepia(1) hue-rotate(-130deg) saturate(4)";
+            } else {
+                filter = "none"; // Xóa filter
+            }
+
+            //Chuỗi mô tả option của sản phẩm
+            let optionText = "";
+            if (item.type === "Smartphone") {
+                optionText = `${item.color ? item.color + " " : ""}${item.storage ? item.storage : ""
+                    }`;
+            } else if (item.type === "Television") {
+                optionText = `${item.screenSize ? item.screenSize + " " : ""}${item.resolution ? item.resolution : ""
+                    }`;
+            } // Accessory không cần optionText
+
+            contentHTML += `
+            <tr>
+                <td>
+                    <div class="cart-product">
+                    <img src="./images/products/${item.img}" alt="${item.name}" style="filter: ${filter};"/>
+                    <span class="cart-product-name">${item.name} ${optionText}</span>
+                    </div>
+                </td>
+                <td class="cart-product-price">$${item.getPrice()}.00</td>
+                <td>
+                    <div class="cart-qty-control">
+                    <button class="cart-qty-btn" onclick="handleUpdateQuantityInCheckout(false, ${i})">-</button>
+                    <span class="cart-qty-num">${item.quantity}</span>
+                    <button class="cart-qty-btn" onclick="handleUpdateQuantityInCheckout(true, ${i})">+</button>
+                    </div>
+                </td>
+                <td class="cart-product-total-price">$${item.getPrice() * item.quantity}.00</td>
+                <td>
+                    <button class="cart-remove-item-btn">
+                        <i class="fa-solid fa-trash" onclick="removeCartItem(${i}, event)"></i>                    
+                    </button>
+                </td>
+            </tr>
+        `
+        }
+    }
+    getEle("checkoutCartList").innerHTML = contentHTML;
+
+    //tính tổng tiền
+    const subtotal = data.reduce((total, item) => total + item.getPrice() * item.quantity, 0);
+    getEle('subtotal').textContent = `$${subtotal}.00`;
+
+    //subtotal + tax (10%)
+    getEle('total').textContent = `$${(subtotal + 1.99).toFixed(2)}`;
+}
+
+/**
+ * Cập nhật số lượng sản phẩm trong checkout modal
+ */
+const handleUpdateQuantityInCheckout = (state, index) => {
+    if (state) {
+        //tăng số lượng
+        cartList[index].quantity += 1;
+    } else {
+        //giảm số lượng
+        cartList[index].quantity -= 1;
+        if (cartList[index].quantity === 0) {
+            //Xóa sản phẩm khỏi giỏ hàng nếu số lượng = 0
+            cartList.splice(index, 1);
+        }
+    }
+    renderCheckoutCartList(cartList);
+    renderCartDropdown(cartList);
+    updateCartCount();
+    setLocalStorage();
+}
+
+window.handleUpdateQuantityInCheckout = handleUpdateQuantityInCheckout;
+
+/**
+ * Xóa tất cả sản phẩm trong giỏ hàng
+ */
+const handleClearCart = () => {
+    cartList = [];
+    renderCheckoutCartList(cartList);
+    renderCartDropdown(cartList);
+    updateCartCount();
+    setLocalStorage();
+}
+
+window.handleClearCart = handleClearCart;
+
+/**
+ * Xử lý thanh toán (checkout)
+ */
+const handleCheckout = () => {
+    handleClearCart();
+    alert("Thank you for your purchase!");
+    getEle("checkout-modal").classList.remove("open");
+    document.body.classList.remove("modal-open-prevent-scroll"); // Mở lại scroll
+}
+
+window.handleCheckout = handleCheckout;
+
+/**
+ * Lưu mảng cartList vào localStorage
+ */
 const setLocalStorage = () => {
     //chuyển list qua string
     const dataString = JSON.stringify(cartList);
@@ -742,7 +914,9 @@ const setLocalStorage = () => {
     localStorage.setItem("CART_LIST", dataString);
 };
 
-// getLocalStorage
+/**
+ * Lấy mảng cartList từ localStorage
+ */
 const getLocalStorage = () => {
     //lấy dữ liệu từ local
     const dataString = localStorage.getItem("CART_LIST");
@@ -785,6 +959,7 @@ const getLocalStorage = () => {
 
     // render lại giỏ hàng
     renderCartDropdown(cartList);
+    renderCheckoutCartList(cartList);
 };
 
 getLocalStorage();
