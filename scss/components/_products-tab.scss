@@ -16,7 +16,7 @@
         padding: 0.5rem 1rem;
 
         &:hover a {
-            color: $primary-color;
+            color: var(--primary-color);
         }
 
         a {
@@ -28,7 +28,8 @@
     }
 
     li.active {
-        background-color: $primary-color;
+        background-color: var(--primary-color);
+        transition: all 0.5s;
 
         a {
             color: white;

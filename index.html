@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NUUA</title>
+  <link rel="shortcut icon" href="./images/products/product-01.png" type="image/x-icon">
+  <title>Mobile Phone E-Commerce</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -465,7 +466,7 @@
       <!-- List TV -->
       <div class="list__tv">
         <div class="list__tv_header">
-          <a href="">Smart TV</a>
+          <h2>Smart TV</h2>
           <button>View all</button>
         </div>
         <div id="listProductTV" class="listProductTV owl-carousel owl-theme"></div>
@@ -474,7 +475,7 @@
       <!-- Feature Accessories -->
       <div class="accessories">
         <div class="accessories__header">
-          <a href="">Featured Accessories</a>
+          <h2>Featured Accessories</h2>
           <button>View all</button>
         </div>
         <div class="accessories__listProduct owl-carousel owl-theme" id="listAccessories"></div>
@@ -694,35 +695,73 @@
     </div>
   </div>
 
+  <section class="explore-videos">
+    <div class="container">
+      <div class="explore-videos__header">
+        <h2>Explore Videos</h2>
+        <button href="#" class="explore-videos__viewall">View all</button>
+      </div>
+      <div class="explore-videos__list owl-carousel owl-theme">
+        <div class="explore-videos__item">
+          <img src="./images/video/img-01.jpg" alt="Video 1" />
+          <button class="explore-videos__play">
+            <i class="fa-solid fa-play"></i>
+          </button>
+        </div>
+        <div class="explore-videos__item">
+          <img src="./images/video/img-02.jpg" alt="Video 2" />
+          <button class="explore-videos__play">
+            <i class="fa-solid fa-play"></i>
+          </button>
+        </div>
+        <div class="explore-videos__item">
+          <img src="./images/video/img-03.jpg" alt="Video 3" />
+          <button class="explore-videos__play">
+            <i class="fa-solid fa-play"></i>
+          </button>
+        </div>
+        <div class="explore-videos__item">
+          <img src="./images/video/img-04.jpg" alt="Video 4" />
+          <button class="explore-videos__play">
+            <i class="fa-solid fa-play"></i>
+          </button>
+        </div>
+        <!-- Thêm video khác nếu muốn -->
+      </div>
+    </div>
+  </section>
+
   <!-- footer -->
   <footer class="footer">
     <div class="footer__features">
-      <div class="footer__feature">
-        <i class="fa-solid fa-truck"></i>
-        <div>
-          <div class="footer__feature-title">FREE DELIVERY</div>
-          <div class="footer__feature-desc">On Above $30</div>
+      <div class="container">
+        <div class="footer__feature__item">
+          <i class="fa-solid fa-truck"></i>
+          <div>
+            <div class="footer__feature-title">FREE DELIVERY</div>
+            <div class="footer__feature-desc">On Above $30</div>
+          </div>
         </div>
-      </div>
-      <div class="footer__feature">
-        <i class="fa-solid fa-sync-alt"></i>
-        <div>
-          <div class="footer__feature-title">10-DAYS</div>
-          <div class="footer__feature-desc">Replacement Services</div>
+        <div class="footer__feature__item">
+          <i class="fa-solid fa-sync-alt"></i>
+          <div>
+            <div class="footer__feature-title">10-DAYS</div>
+            <div class="footer__feature-desc">Replacement Services</div>
+          </div>
         </div>
-      </div>
-      <div class="footer__feature">
-        <i class="fa-solid fa-shield-alt"></i>
-        <div>
-          <div class="footer__feature-title">100% SECURE</div>
-          <div class="footer__feature-desc">Payment Gateway</div>
+        <div class="footer__feature__item">
+          <i class="fa-solid fa-shield-alt"></i>
+          <div>
+            <div class="footer__feature-title">100% SECURE</div>
+            <div class="footer__feature-desc">Payment Gateway</div>
+          </div>
         </div>
-      </div>
-      <div class="footer__feature">
-        <i class="fa-solid fa-check-square"></i>
-        <div>
-          <div class="footer__feature-title">100% MANUFACTURING</div>
-          <div class="footer__feature-desc">Warranty</div>
+        <div class="footer__feature__item">
+          <i class="fa-solid fa-check-square"></i>
+          <div>
+            <div class="footer__feature-title">100% MANUFACTURING</div>
+            <div class="footer__feature-desc">Warranty</div>
+          </div>
         </div>
       </div>
     </div>
@@ -801,6 +840,30 @@
     </div>
   </footer>
 
+  <!-- color switcher -->
+  <div class="color-switcher collapsed">
+    <div class="color-switcher__toggle">
+      <i class="fa-solid fa-gear"></i>
+    </div>
+    <div class="color-switcher__panel">
+      <div class="color-switcher__title">Color Switcher</div>
+      <hr class="color-switcher__divider" />
+      <div class="color-switcher__colors">
+        <button class="color-switcher__color" style="background:#0D6EFD"></button>
+        <button class="color-switcher__color" style="background:#6610F2"></button>
+        <button class="color-switcher__color" style="background:#6F42C1"></button>
+        <button class="color-switcher__color" style="background:#D63384"></button>
+        <button class="color-switcher__color" style="background:#DC3545"></button>
+        <button class="color-switcher__color" style="background:#FD7E14"></button>
+        <button class="color-switcher__color" style="background:#FFC107"></button>
+        <button class="color-switcher__color" style="background:#28A745"></button>
+        <button class="color-switcher__color" style="background:#20C997"></button>
+        <button class="color-switcher__color" style="background:#0DCAF0"></button>
+      </div>
+      <button class="color-switcher__reset">Reset Default</button>
+    </div>
+  </div>
+
   <!-- back to top -->
   <a href="#" class="cd-top text-replace js-cd-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -821,6 +884,20 @@
     });
   </script>
 
+  <script>
+    $(".explore-videos__list").owlCarousel({
+      nav: true,
+      dots: true,
+      margin: 30,
+      responsive: {
+        0: { items: 1 },
+        600: { items: 2 },
+        1000: { items: 3 }
+      }
+    });
+  </script>
+
+  <!-- back to top -->
   <script src="./js/back-to-top.js"></script>
   <script src="./js/util.js"></script>
 
@@ -828,6 +905,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.11.0/axios.min.js"
     integrity="sha512-h9644v03pHqrIHThkvXhB2PJ8zf5E9IyVnrSfZg8Yj8k4RsO4zldcQc4Bi9iVLUCCsqNY0b4WXVV4UB+wbWENA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- thư viện tinycolor (giúp tạo màu động) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.2/tinycolor.min.js"></script>
+
   <script type="module" src="./js/main.js"></script>
   <script type="module" src="./src/controllers/index.js"></script>
 
@@ -836,6 +917,7 @@
   <script src="./js/resetOptions.js"></script>
   <script src="./js/calcPriceAfterSelect.js"></script>
   <script src="./js/cartDropDown.js"></script>
+  <script src="./js/colorSwitcher.js"></script>
 </body>
 
 </html>
