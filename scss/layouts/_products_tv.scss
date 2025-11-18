@@ -8,8 +8,7 @@
     margin-bottom: 1.5rem;
     align-items: center;
 
-    a {
-      text-decoration: none;
+    h2 {
       color: black;
       font-weight: 500;
       @include text-8();
@@ -17,9 +16,9 @@
     }
 
     button {
-      @include small-btn(transparent, $primary-color, $primary-color, white);
+      @include small-btn(transparent, var(--primary-color), var(--primary-color), white);
       padding: 0.5rem 1rem;
-      border: 0.3px solid $primary-color;
+      border: 0.3px solid var(--primary-color);
       background: transparent;
       @include text-2();
     }

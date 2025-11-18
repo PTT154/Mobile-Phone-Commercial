@@ -5,34 +5,38 @@
     font-size: 16px;
 
     .footer__features {
-        display: flex;
-        justify-content: space-between;
         background: #F1F2F3;
         color: #222;
-        padding: 20px 20px 20px 20px;
+        padding: 20px 0;
         border-bottom: 1px solid $border-color;
         border-top: 1px solid $border-color;
 
-        .footer__feature {
-            margin: 0 auto;
-            max-width: 1320px;
+        .container {
             display: flex;
-            align-items: center;
+            justify-content: space-between;
 
-            i {
-                font-size: 2.2rem;
-                color: #6C757D;
-                margin-right: 8px;
-            }
+            .footer__feature__item {
+                width: 25%;
+                margin: 0 auto;
+                max-width: 1320px;
+                display: flex;
+                align-items: center;
 
-            .footer__feature-title {
-                font-weight: 600;
-                font-size: 1.1rem;
-            }
+                i {
+                    font-size: 2.2rem;
+                    color: #6C757D;
+                    margin-right: 8px;
+                }
 
-            .footer__feature-desc {
-                font-size: 0.95rem;
-                color: #888;
+                .footer__feature-title {
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                }
+
+                .footer__feature-desc {
+                    font-size: 0.95rem;
+                    color: #888;
+                }
             }
         }
     }
@@ -71,14 +75,14 @@
                         text-decoration: none;
 
                         &:hover {
-                            color: $primary-color;
+                            color: var(--primary-color);
                             text-decoration: underline;
                         }
                     }
 
                     i {
                         margin-right: 8px;
-                        color: $primary-color;
+                        color: var(--primary-color);
                     }
                 }
             }
@@ -96,7 +100,7 @@
                 }
 
                 button {
-                    background: $primary-color;
+                    background: var(--primary-color);
                     color: #fff;
                     border: none;
                     border-radius: 0 4px 4px 0;
@@ -126,7 +130,7 @@
             flex: 1;
 
             .footer__brand {
-                color: $primary-color;
+                color: var(--primary-color);
                 font-weight: 600;
             }
         }
@@ -151,7 +155,7 @@
                 transition: color 0.2s;
 
                 &:hover {
-                    color: $primary-color;
+                    color: var(--primary-color);
                 }
             }
         }

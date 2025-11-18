@@ -135,7 +135,7 @@
                     #productPrice {
                         font-size: 1.8rem;
                         font-weight: 600;
-                        color: $primary-color;
+                        color: var(--primary-color);
                     }
 
                     span:nth-of-type(3) {
@@ -235,9 +235,9 @@
 
             .storage-option.active,
             .color-option.active {
-                border: 1px solid $primary-color !important;
+                border: 1px solid var(--primary-color) !important;
                 background-color: #F6F6FB !important;
-                color: $primary-color !important;
+                color: var(--primary-color) !important;
             }
 
             .product-select__tv {
@@ -312,9 +312,9 @@
 
             .resolution-option.active,
             .screen-size-option.active {
-                border: 1px solid $primary-color !important;
+                border: 1px solid var(--primary-color) !important;
                 background-color: #F6F6FB !important;
-                color: $primary-color !important;
+                color: var(--primary-color) !important;
             }
 
 
@@ -335,7 +335,7 @@
 
                     &:last-of-type {
                         width: 50%;
-                        @include small-btn($primary-color, white, darken($primary-color, 10%));
+                        @include small-btn(var(--primary-color), white, var(--primary-color-dark));
                     }
                 }
             }

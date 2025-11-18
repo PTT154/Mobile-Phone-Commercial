@@ -122,11 +122,11 @@
   }
 
   .cart-product-price {
-    color: $primary-color;
+    color: var(--primary-color);
   }
 
   .cart-product-total-price {
-    color: $primary-color;
+    color: var(--primary-color);
     font-weight: 500;
   }
 
@@ -210,7 +210,7 @@
   }
 
   .cart-checkout-btn {
-    background: $primary-color;
+    background: var(--primary-color);
     color: #fff;
     border: none;
     padding: 12px 0;
@@ -219,10 +219,10 @@
     font-weight: 500;
     margin-top: 24px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.5s;
 
     &:hover {
-      background: darken($primary-color, 10%);
+      background: var(--primary-color-dark);
     }
   }
 
@@ -236,7 +236,7 @@
     font-weight: 500;
     margin-top: 12px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.5s;
 
     &:hover {
       background: #950606

@@ -20,7 +20,7 @@
 
 .banner-3 {
     &::after {
-        background: $primary-color;
+        background: var(--primary-color);
         opacity: 0.4;
     }
 }
@@ -58,7 +58,7 @@
 
         a {
             text-decoration: none;
-            @include big-btn($primary-color, $hero-text-color, darken($primary-color, 10%), $hero-text-color);
+            @include big-btn(var(--primary-color), $hero-text-color, var(--primary-color-dark), $hero-text-color);
         }
     }
 }
@@ -87,12 +87,13 @@
         p:first-of-type {
             @include text-4();
             font-weight: 700;
-            background-color: $primary-color;
+            background-color: var(--primary-color);
             display: inline-block;
             padding: 0 1.5rem;
             border-radius: 32px;
             padding-bottom: 0.15rem !important;
             margin-bottom: 1.5rem;
+            transition: all 0.5s;
 
             sup {
                 font-size: 0.75rem;
